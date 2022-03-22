@@ -1,4 +1,4 @@
-# The Dublin Bookclub Meetup Project
+# The Bookclub Meetup Project
 
 ## A one-liner subheading goes here 
 
