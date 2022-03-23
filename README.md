@@ -1,6 +1,6 @@
 # The Bookclub Meetup Project
 
-## A one-liner subheading goes here 
+## An interactive social blog site for a Dubin Bookclub Meetup group.     
 
 <br />
 
@@ -22,37 +22,41 @@ You can view the live deployed app [HERE.](https://ci-pp4-dw-bookclub.herokuapp.
 ## - Purpose -
 [This app was created as the fourth Portfolio Project (PP4) for the Code Institute's Full Stack Web Development course. The app is to showcase skills to design a web application using an MVC framework and related contemporary technologies, and as a requirement is deployed to Heroku.]    
 
+An interactive social blog site for a Dubin Bookclub Meetup group.  The club meets once a month in a social setting to discuss the books assigned for reading through popular vote. 
 
-Some blurb about the app goes here  
+Organisers can post details of the books to be read for the next meetup.  Members can leave comments on the books or the meeting and suggest new books for the group to read and dsicuss.  Members can also vote for which books will be on next months reading list from the list of suggested books.  Comments are only visibe to authenticated (logged-in) members unless they poster marks it as a public comment.  
 
 
 
 ## - User Experience Design -
 
--   ### User stories
+- ### User stories
 
-    -   ### Design Strategy Goals
-        -    Create a simple onine Blackjack card game which will appeal to wide range of users
-        -    Site must be intuitive to read & navigate on both desktop & mobile devices - using Mobile First design
+    - ### Design Strategy Goals
+        - Create an interactive blog site for a Bookclub members' group Meetup
+        - Site must be intuitive to read & navigate on both desktop & mobile devices - using Mobile First design
+        - Site must allow admins (aka organisers) and users (aka members) to authenticate and interact with the content, e.g. create meetup info or post comments
 
     -   ### Design Scope to Deliver MVP
-        -   #### First Time Visitor Goals
+        - #### Club Organiser Goals
+            As a site admin...
+            - I wanto to be able to setup and manage the book list
+            - I want to be able to setup and manage the monthly meetup information page
+
+        - #### First Time Visitor Goals
             As a first time user...
-            -   I want to be able to intuitively navigate the site
-            -   I want to easily find instructions to understand how to use the site
-            -   I want to be able to easily & quickly play the game
-            -   I want the site to be visually clear & appealing
+            - I want to be able to intuitively navigate the site
+            - I want to easily find information about the book club and its social meetups
+            - I want to be able to register to become a club member
 
         -   #### Returning Visitor Goals
             As a returning visitor...
-            -   I want to be able to quickly play the game
-            -   I want to be able to view and play the game on a mobile device
+            -   I want to be able to easily see details of the previous & next meetup  
+            -   I want to be able to post comments
+            -   I want to be able to vote for book of the month
 
-        -   #### Frequent User Goals
-            As a frequent user...
-            -   I want to to be able to increase the difficulty level of the game to make play more exciting
 
--   ### Design
+- ### Design
     -   #### Layout
          
     -   #### Content
@@ -95,10 +99,10 @@ To fulfil the needs of the site's users, the following features were implemented
 
 ### Frameworks, Libraries & Programs Used
 
-1.  [Git](https://git-scm.com/) was used for version control and managed via the VSCode terminal to commit to Git and Push to GitHub.
+1.  [Git](https://git-scm.com/) was used for version control and managed via the VSCode terminal to commit to Git and push to GitHub.
 1.  [GitHub](https://github.com/) was used to store the project's code after being pushed from Git
 1.  [Flake8](https://flake8.pycqa.org/en/latest/) linter extension for VScode 
-1.  [Heroku](https://www.heroku.com) was used to deploy the app using a Code Institute template
+1.  [Heroku](https://www.heroku.com) was used to deploy the app
 1.  [LucidChart](https://lucidchart.com) was used to create the logic flowchart
 
 <!---  --->
