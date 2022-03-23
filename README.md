@@ -104,6 +104,9 @@ To fulfil the needs of the site's users, the following features were implemented
 1.  [Flake8](https://flake8.pycqa.org/en/latest/) linter extension for VScode 
 1.  [Heroku](https://www.heroku.com) was used to deploy the app
 1.  [LucidChart](https://lucidchart.com) was used to create the logic flowchart
+1.  [Boostrap 5]() front-end CSS toolkit
+1.  [Font Awesome 6]() font and icon toolkit
+
 
 <!---  --->
 <!---  Begin testing section --->

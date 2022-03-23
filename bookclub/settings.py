@@ -58,13 +58,13 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 # Application definition
 #
 INSTALLED_APPS = [
+    'blog',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog',
 ]
 
 MIDDLEWARE = [
@@ -82,7 +82,7 @@ ROOT_URLCONF = 'bookclub.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATES_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
