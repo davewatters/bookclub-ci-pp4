@@ -1,24 +1,32 @@
+from xml.sax.handler import property_declaration_handler
 from django.db import models
+from django.utils.text import slugify
 
 
 class Book(models.Model):
     title = models.CharField(max_length=200, unique=True)
-    slug = models.SlugField(max_length=200, unique=True)
     author= models.CharField(max_length=60, unique=True)
-    publisher = models.CharField(max_length=40)
-    year_pubished = models.PositiveSmallIntegerField(blank=True, null=True)
+    publisher = models.CharField(max_length=40, blank=True)
+    year_published = models.CharField(max_length=4, blank=True)
     synopsis = models.TextField(blank=True)
     # cover_image = 'placeholder'
     members_rating = models.PositiveSmallIntegerField(default=0)
+    slug = models.SlugField(max_length=200, unique=True)
     created_on = models.DateTimeField(auto_now_add=True)
-    updated_on = models.DateTimeField(auto_now=True)
+    last_modified = models.DateTimeField(auto_now=True)
     # created_by = models.ForeignKey(User)
 
-    class Meta:
-        ordering = ["-title"]
 
     def __str__(self):
         return self.title
+
+
+    def has_been_read(self):
+        return Meetup.objects.get(book1=self.id)
+
+    @property
+    def long_title(self):
+        return (self.title +' by ' +self.author)
 
 
 class Meetup(models.Model):
@@ -29,12 +37,30 @@ class Meetup(models.Model):
         (2, 'Cancelled')
     )
 
-    meetup_date = models.DateTimeField(blank=False)
-    slug = models.SlugField(max_length=200, unique=True)
-    book1_id = models.ForeignKey(Book, on_delete=models.PROTECT, related_name='book1')
-    book2_id = models.ForeignKey(Book, on_delete=models.PROTECT, related_name='book2')
+    title = models.CharField(max_length=40,unique=True)
+    meetup_date = models.DateField(blank=False)
+    book1 = models.ForeignKey(Book, on_delete=models.PROTECT, related_name='book1')
+    # book2 = models.ForeignKey(Book, on_delete=models.PROTECT, related_name='book2')
     details = models.TextField(blank=False)
     status = models.IntegerField(choices=MEETUP_STATUS, default=0)
+    slug = models.SlugField(max_length=40, unique=True)
+
+    class Meta:
+        ordering = ["-meetup_date"]
+
+    @property
+    def meetup_title(self):
+         return ('Meetup '+str(self.id) + self.meetup_date.strftime(': %B, %Y'))
 
     def __str__(self):
-        return (self.meetup_date.strftime('%B'))
+        return self.meetup_title
+
+    @property
+    def book1_detail(self):
+        return Book.objects.get(id=self.book1_id)
+
+
+    # def save(self, *args, **kwargs):
+    #     self.title = self.meetup_title
+    #     self.slug = slugify(self.meetup_title)
+    #     super(Meetup, self).save(*args, **kwargs)

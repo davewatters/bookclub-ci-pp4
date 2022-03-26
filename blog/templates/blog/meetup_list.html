@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+
+    <h1>In meetup_list.html</h1>
+    <p>As a test, DEBUG is currently set to: {{ disp_text }}</p>
+    <p></p>
+    <h2>Upcoming & Recent Book Club Meetups</h2>
+    <!-- List the Meetup details -->
+    <div class="col-12 mt-3 left">
+      <div class="row">
+        {% for meetup in meetup_list %}
+        <div class="col-md-4">
+            <div class="card mb-4 meetup-card">
+              <div class="card-body">
+                <div>
+                  <h3 class="card-title">{{ meetup.meetup_title }}</h3>
+                </div>
+                  <div class="card-subtitle mb-2 text-muted">
+                    <P>The book this month is</P>
+                  </div>
+                  <div>
+                    <h4>{{ meetup.book1_detail.title }}</h4>
+                    <p>by {{  meetup.book1_detail.author }}</p>
+                  </div>
+                  <div>
+                    <p>** meetup.book1.cover_image goes here **</p>
+                  </div>
+                  <div class="card-body">
+                    <P>{{ meetup.details }}</P>
+                  </div>
+              </div>
+            </div>
+            
+          </div>
+          {% endfor %}
+      </div>
+    </div>
+    
+  </div>
+</div>
+{% endblock content %}
