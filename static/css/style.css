@@ -2,6 +2,20 @@ body {
   background-color: rgb(215, 243, 243);
 }
 
+/* 
+  Footer
+*/
+.social-link {
+  color: black;
+}
+
+#github-link {
+  color: black;
+}
+
+/* 
+  Main home screen
+*/
 .meetup-card {
   height: 95%;
 }

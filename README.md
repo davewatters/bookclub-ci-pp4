@@ -142,7 +142,7 @@ To fulfil the needs of the site's users, the following features were implemented
 
 ### Bugs  
 
-1. No known bugs at this time
+1. Github & LinkedIn fontawsome incons won't correctly apply css class style. https://github.com/twbs/bootstrap/issues/30343.  _reboot.scss:251
 <!---  --->
 <!--- end of testing section --->
 <!---  --->
