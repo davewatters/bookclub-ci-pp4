@@ -10,9 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-import dj_database_url
 import os
 from pathlib import Path
+
+import dj_database_url
 from dotenv import load_dotenv
 
 # Create a .env file in same dir as this settings.py file
@@ -20,7 +21,7 @@ load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+TEMPLATES_DIR = BASE_DIR.joinpath('templates')
 
 DEVELOPMENT = os.environ.get('DEVELOPMENT', False)
 DEBUG = DEVELOPMENT
@@ -64,7 +65,9 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -135,7 +138,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static') ]
+STATICFILES_DIRS = [ BASE_DIR.joinpath('static') ]
+STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+STATIC_ROOT = BASE_DIR.joinpath('staticfiles')
+# STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static') ]
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
