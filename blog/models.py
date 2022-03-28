@@ -1,6 +1,6 @@
-from xml.sax.handler import property_declaration_handler
 from django.db import models
 from django.utils.text import slugify
+from cloudinary.models import CloudinaryField
 
 
 class Book(models.Model):
@@ -9,17 +9,15 @@ class Book(models.Model):
     publisher = models.CharField(max_length=40, blank=True)
     year_published = models.CharField(max_length=4, blank=True)
     synopsis = models.TextField(blank=True)
-    # cover_image = 'placeholder'
+    cover_image = CloudinaryField('image', default='placeholder')
     members_rating = models.PositiveSmallIntegerField(default=0)
     slug = models.SlugField(max_length=200, unique=True)
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     # created_by = models.ForeignKey(User)
 
-
     def __str__(self):
         return self.title
-
 
     def has_been_read(self):
         return Meetup.objects.get(book1=self.id)

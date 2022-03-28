@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
 <div class="container-fluid">
   <div class="row">
@@ -24,8 +25,13 @@
                     <h4>{{ meetup.book1_detail.title }}</h4>
                     <p>by {{  meetup.book1_detail.author }}</p>
                   </div>
-                  <div>
-                    <p>** meetup.book1.cover_image goes here **</p>
+                  <div class="image-container">
+                    {% if "placeholder" in meetup.book1.cover_image.url %}
+                    <img class="bookcover-img"
+                        src="{% static 'media/penguin-book-cover.png' %}" alt="bookcover image placeholder">
+                    {% else %}
+                    <img class="card-img-top" src=" {{ meetup.book1.cover_image.url }}">
+                    {% endif %}
                   </div>
                   <div class="card-body">
                     <P>{{ meetup.details }}</P>
