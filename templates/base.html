@@ -27,19 +27,32 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
+          <!-- make the menu items right-aligned -->
+          <ul class="navbar-nav ">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Meetups</a>
+              <a class="nav-link active" aria-current="page" href="{% url 'blog-home' %}">Meetups</a>
             </li>
+            <!-- menu item to show the book list -->
             <li class="nav-item">
               <a class="nav-link" href="#">Our Library</a>
             </li>
+            <!-- menu item club bio/info -->
             <li class="nav-item">
               <a class="nav-link" href="#">About Us</a>
             </li>
+            <!-- User Auth stuff here -->
+            {% if user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link">Join the Club/Login</a>
+              <a class="nav-link" href="{% url 'account_logout' %}">Logout {{ user.username }}</a>
             </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_signup' %}">Join the Club!</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+            </li>
+            {% endif %}
           </ul>
         </div>
       </div>
@@ -56,7 +69,7 @@
         <!-- LinkedIn -->
           <a  class="social-link" href="https://www.linkedin.com/in/davidwattersit/"
               role="button" target="_blank" aria-label="linkedin link"><i class="fab fa-lg fa-linkedin"></i></a>
-          <p class="px-4">Copyright &copy; 2021 David Watters</p>
+          <p class="px-4">Copyright &copy; 2022 David Watters</p>
         <!-- Github link -->
           <a class="social-link" href="https://github.com/davewatters"
               role="button" target="_blank" aria-label="github link"><i class="fab fa-lg fa-github"></i></a>
