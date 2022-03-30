@@ -23,6 +23,7 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = BASE_DIR.joinpath('templates')
 
+
 DEVELOPMENT = os.environ.get('DEVELOPMENT', False)
 DEBUG = DEVELOPMENT
 
@@ -60,14 +61,20 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 #
 INSTALLED_APPS = [
     'blog',
+    'userauth.apps.UserauthConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sessions',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -138,7 +145,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [ BASE_DIR.joinpath('static') ]
+STATICFILES_DIRS = [ BASE_DIR.joinpath('static'), ]
 STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 STATIC_ROOT = BASE_DIR.joinpath('staticfiles')
 # STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static') ]
@@ -151,3 +158,11 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Added these with the Allauth package
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+# django-crispy-forms
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

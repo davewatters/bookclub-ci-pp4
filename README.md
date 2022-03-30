@@ -95,7 +95,7 @@ To fulfil the needs of the site's users, the following features were implemented
 
 ### Languages Used
 
--   [Python 3.6+](https://en.wikipedia.org/wiki/Python_(programming_language))
+-   [Python 3.6+](https://en.wikipedia.org/wiki/Python_(programming_language)) with the [Django](https://en.wikipedia.org/wiki/Django_(web_framework)) web framework
 
 ### Frameworks, Libraries & Programs Used
 
@@ -149,27 +149,42 @@ To fulfil the needs of the site's users, the following features were implemented
 
 ## - Deployment -
 
+### Requirements
+- Python >=3.6, Django 3.2
+- The following third party packages were installed using `pip install <package_name>` (listed below in order of installation).  The full list of required dependencies, with version numbers, is in the `requirements.txt` file.  
+```
+python-dotenv
+Django
+gunicorn
+dj_database_url
+psycopg2
+dj3-cloudinary-storage
+django-allauth
+django-crispy-forms
+```
+
+
 ### Heroku  
 The live deployed site can be viewed on Heroku [HERE](https://ci-pp4-dw-bookclub.herokuapp.com)
 
-The Project repository (repo) is at [https://github.com/davewatters/pwnytrap-ci-pp3](https://github.com/davewatters/)
-
+The Project repository (repo) is at [https://github.com/davewatters/](https://github.com/davewatters/bookclub-ci-pp4)
 
 Deployment of the site to Heroku was done as follows:
  
 1.  Login to your Heroku account
 1.  Create a New App
 1.  (Important!) Select the 'Settings' tab first
-1.  Click on 'Reveal Config Vars'
-1.  Add any relevant config vars by entering the KEY/VALUE pair data, e.g. PORT & 8000
-1.  Select 'Add Buildpack'
-1.  (Important!) Select Python first, then select NodeJS
+1.  Select 'Add Buildpack' and select Python
+1.  Add the database in the 'Resources' tab > Add-ons, select Heroku Postgres
+1.  In 'Settings' click on 'Reveal Config Vars'
+1.  Add any relevant config vars by entering the KEY/VALUE pair data, e.g. PORT & 8000. 
+    The required vars are shown in the `.env_template` file in the project repo
 1.  Select the 'Deploy' tab
 1.  For the Deplyoment Method select GitHub
 1.  Connect to GitHub repo by entering YOUR-REPO-NAME, then Connect
 1.  A message will confirm that your app was successfuly deployed
 1.  Test that the site has successfully gone live by clicking on the 'View' button
-1.  Your app can now be accessed via any browser at: `https://YOUR-APP-NAME.heroku.com`
+1.  Your app can now be accessed via any browser at: `https://YOUR-APP-NAME.herokuapp.com`
 
 
 ## - Credits - 
