@@ -61,7 +61,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 #
 INSTALLED_APPS = [
     'blog',
-    'userauth.apps.UserauthConfig',
+    'userauth',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

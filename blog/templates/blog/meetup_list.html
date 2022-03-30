@@ -3,9 +3,6 @@
 {% block content %}
 <div class="container-fluid">
   <div class="row">
-
-    <h1>In meetup_list.html</h1>
-    <p>As a test, DEBUG is currently set to: {{ disp_text }}</p>
     <p></p>
     <h2>Upcoming & Recent Book Club Meetups</h2>
     <!-- List the Meetup details -->
@@ -13,34 +10,33 @@
       <div class="row">
         {% for meetup in meetup_list %}
         <div class="col-md-4">
-            <div class="card mb-4 meetup-card">
-              <div class="card-body">
-                <div>
-                  <h3 class="card-title">{{ meetup.meetup_title }}</h3>
+          <div class="card mb-4 meetup-card">
+            <div class="card-body">
+              <div>
+                <h3 class="card-title">{{ meetup.meetup_title }}</h3>
+              </div>
+                <div class="card-subtitle mb-2 text-muted">
+                  <P>The book this month is</P>
                 </div>
-                  <div class="card-subtitle mb-2 text-muted">
-                    <P>The book this month is</P>
-                  </div>
-                  <div>
-                    <h4>{{ meetup.book1_detail.title }}</h4>
-                    <p>by {{  meetup.book1_detail.author }}</p>
-                  </div>
-                  <div class="image-container">
-                    {% if "placeholder" in meetup.book1.cover_image.url %}
-                    <img class="bookcover-img"
-                        src="{% static 'media/penguin-book-cover.png' %}" alt="bookcover image placeholder">
-                    {% else %}
-                    <img class="card-img-top" src=" {{ meetup.book1.cover_image.url }}">
-                    {% endif %}
-                  </div>
-                  <div class="card-body">
-                    <P>{{ meetup.details }}</P>
-                  </div>
+                <div>
+                  <h4>{{ meetup.book1_detail.title }}</h4>
+                  <p>by {{  meetup.book1_detail.author }}</p>
+                </div>
+                <div class="image-container">
+                  {% if "placeholder" in meetup.book1.cover_image.url %}
+                  <img class="bookcover-img"
+                      src="{% static 'media/penguin-book-cover.png' %}" alt="bookcover image placeholder">
+                  {% else %}
+                  <img class="card-img-top" src=" {{ meetup.book1.cover_image.url }}">
+                  {% endif %}
+                </div>
+                <div class="card-body">
+                  <P>{{ meetup.details }}</P>
+                </div>
               </div>
             </div>
-            
-          </div>
-          {% endfor %}
+        </div>
+        {% endfor %}
       </div>
     </div>
     
