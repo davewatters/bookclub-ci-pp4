@@ -18,22 +18,18 @@
   --bg-colour: rgb(215, 243, 243); /* background colour */
   --header-font-family: "Lato", serif;
   --text-font-family: "Lato", serif;
-  --text-font-size: 1.6rem;
+  --logo-font-family: "Times", serif;
+  /* --text-font-size: 1rem; */
   --btn-font-size: 1.6rem;
   --btn-colour: #9acd32;
   --btn-active-colour: #aaff01;
 }
 
-html {
-  /* Set root font-size to 10px so that 1rem becomes 10px  */
-  /* font-size: 62.5%; */
-}
-
 body {
   background-color: var(--bg-colour);
   color: #000;
-  /* font-family: var(--text-font-family, Georgia, Times, serif);
-  font-size: var(--text-font-size); */
+  /* font-family: var(--text-font-family, Georgia, Times, serif); */
+  font-size: var(--text-font-size);
 }
 
 
@@ -41,13 +37,9 @@ body {
   Navbar
 */
 .logo {
-  font: var(--header-font-family);
+  font: var(--logo-font-family);
   font-weight: bold;
   color: brown;
-}
-
-.nav-align-r {
-  align-items: flex-end;
 }
 
 
@@ -61,6 +53,22 @@ body {
 /* 
   Main home screen
 */
-.meetup-card {
-  height: 95%;
+.card-max-h {
+  height: 36rem;
 }
+
+.card-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.image-container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.bookcover-img {
+  width: 50%;
+}
+

@@ -3,43 +3,45 @@
 {% block content %}
 <div class="container-fluid">
   <div class="row">
-    <p></p>
-    <h2>Upcoming & Recent Book Club Meetups</h2>
-    <!-- List the Meetup details -->
+    <!-- List the Meetup info in card style -->
     <div class="col-12 mt-3 left">
       <div class="row">
-        {% for meetup in meetup_list %}
-        <div class="col-md-4">
-          <div class="card mb-4 meetup-card">
-            <div class="card-body">
-              <div>
-                <h3 class="card-title">{{ meetup.meetup_title }}</h3>
+          {% for meetup in meetup_list %}
+          <div class="col-md-4">
+            <div class="card mb-4 card-max-h shadow">
+              <div class="card-body text-center"><h5>{{ meetup.title }}</h5></div>
+
+              <div class="image-container">
+                {% if "placeholder" in meetup.book1.cover_image.url %}
+                <img class="bookcover-img"
+                    src="{% static 'media/penguin-book-cover.png' %}" alt="bookcover image placeholder">
+                {% else %}
+                <img class="bookcover-img" src=" {{ meetup.book1.cover_image.url }}" alt="bookcover image">
+                {% endif %}
               </div>
-                <div class="card-subtitle mb-2 text-muted">
-                  <P>The book this month is</P>
-                </div>
-                <div>
-                  <h4>{{ meetup.book1_detail.title }}</h4>
-                  <p>by {{  meetup.book1_detail.author }}</p>
-                </div>
-                <div class="image-container">
-                  {% if "placeholder" in meetup.book1.cover_image.url %}
-                  <img class="bookcover-img"
-                      src="{% static 'media/penguin-book-cover.png' %}" alt="bookcover image placeholder">
-                  {% else %}
-                  <img class="card-img-top" src=" {{ meetup.book1.cover_image.url }}">
-                  {% endif %}
-                </div>
-                <div class="card-body">
-                  <P>{{ meetup.details }}</P>
-                </div>
+              <!-- end image-container -->
+
+              <div class="card-body overflow-auto">
+                <p class="card-text">
+                  The book this month is <strong>{{ meetup.book1_detail.title }}</strong>
+                  by <strong>{{  meetup.book1_detail.author }}</strong></p>
+                <p class="card-text">{{ meetup.details }}</p>
+              </div>
+              
+              <div class="card-footer text-right">
+                <a href="{% url 'meetup_detail' meetup.slug %}" class="stretched-link">Read more >></a>
               </div>
             </div>
-        </div>
-        {% endfor %}
+            <!-- end card -->
+          </div>
+          <!-- end col -->
+          {% endfor %}
+
       </div>
+      <!-- end inner row -->
     </div>
-    
   </div>
+  <!-- end outer row -->
 </div>
+<!-- end container -->
 {% endblock content %}
