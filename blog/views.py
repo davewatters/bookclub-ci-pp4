@@ -17,7 +17,7 @@ class MeetupDetail(View):
 
         return render (
             request,
-            'meetup_detail.html',
+            'blog/meetup_detail.html',
             {
                 'meetup': meetup,
             },
