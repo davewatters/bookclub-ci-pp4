@@ -1,10 +1,93 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<div class="container-fluid">
+<div class="container">
   <div class="row">
-    <h1>This is the meetup detail view</h1>
     
+    <!-- Meetup details in a central card -->
+    <div class="col-sm py-4">
+      <div class="card shadow">
+        <div class="card-header">
+          {{ meetup.long_title }}
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <!-- image container -->
+            <div class="col image-container">
+                {% if "placeholder" in meetup.book1.cover_image.url %}
+                <img class="bookcover-img"
+                    src="{% static 'media/penguin-book-cover.png' %}" alt="bookcover image placeholder">
+                {% else %}
+                <img class="bookcover-img" src=" {{ meetup.book1.cover_image.url }}" alt="bookcover image">
+                {% endif %}
+            </div>
+            <!-- end image-container -->
+            
+            <div class="col-8">
+              <div class="card-body">
+                <p class="card-text"><h3>{{ meetup.book1_detail.title }}</h3></p>
+                <p class="card-text"><h4>{{  meetup.book1_detail.author }}</h4></p>
+                <p class="card-text">Year Published: {{ meetup.book1.year_published }}</p>
+                <hr>
+                  <p class="card-text">{{ meetup.book1.synopsis }}</p>
+                  <hr>
+                  <p class="card-text">Members' Rating: {{ meetup.book1.members_rating }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="px-2">
+            <p>Organiser's Note:</p>
+            <p>{{ meetup.details }}</p></div>
+        </div>
+      </div>
+    </div>
+    <!-- end details container card -->
+  </div>
+  <div class="row">
+    <!-- Meetup comments in a central card -->
+    <div class="col-sm py-4">
+      <div class="card shadow">
+        <div class="card-header">
+          <div class="row justify-content-between">
+            <div class="ml-4 card-text"><strong>{{ meetup.no_of_comments }} Comments</strong></div>
+            {% if user.is_authenticated %}
+            <!-- Show a btn to Leave a comment -->
+            <div class="mr-4 btn btn-secondary">
+              Leave a Comment
+            </div>
+            {% else %}
+            <div class="mr-4">
+              <a href="{% url 'account_login' %}">Login to join the discussion</a>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        <!-- end comments header -->
+
+        <div class="card-body">
+            <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
+            {% for comment in comments %}
+            <div class="comments">
+                <p class="">
+                    <!-- The commenter's name goes here. Check the model if you're not sure what that is -->
+                    <span class=" text-muted font-weight-normal">
+                      <!-- The comment's created date goes here -->
+                      {{ comment.created_on }}
+                    </span>
+                    <strong>{{ comment.username }} </strong>wrote:
+                </p>
+                <!-- The body of the comment goes before the | -->
+                {{ comment.body | linebreaks }}
+                <hr>
+            </div>
+            <!-- Our for loop ends here -->
+            {% endfor %}
+        </div>
+    </div>
+    <!-- end comments container card -->
+
   </div>
   <!-- end outer row -->
 </div>

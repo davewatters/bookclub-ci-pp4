@@ -13,5 +13,5 @@ class BookAdmin(admin.ModelAdmin):
 @admin.register(Meetup)
 class MeetupAdmin(admin.ModelAdmin):
     
-    list_display = ('meetup_title', 'meetup_date', 'book1')
+    list_display = ('long_title', 'meetup_date', 'book1')
     prepopulated_fields = {'slug': ('title',)}

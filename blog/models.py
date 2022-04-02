@@ -1,5 +1,6 @@
 from django.db import models
-from django.utils.text import slugify
+from django.contrib.auth.models import User
+
 from cloudinary.models import CloudinaryField
 
 
@@ -38,7 +39,6 @@ class Meetup(models.Model):
     title = models.CharField(max_length=40,unique=True)
     meetup_date = models.DateField(blank=False)
     book1 = models.ForeignKey(Book, on_delete=models.PROTECT, related_name='book1')
-    # book2 = models.ForeignKey(Book, on_delete=models.PROTECT, related_name='book2')
     details = models.TextField(blank=False)
     status = models.IntegerField(choices=MEETUP_STATUS, default=0)
     slug = models.SlugField(max_length=40, unique=True)
@@ -47,18 +47,33 @@ class Meetup(models.Model):
         ordering = ["-meetup_date"]
 
     @property
-    def meetup_title(self):
+    def long_title(self):
          return ('Meetup '+str(self.id) + self.meetup_date.strftime(': %B, %Y'))
 
     def __str__(self):
-        return self.meetup_title
+        return self.title
 
     @property
     def book1_detail(self):
         return Book.objects.get(id=self.book1_id)
 
+    @property
+    def no_of_comments(self):
+        return Meetup.objects.filter(comments__meetup=self.id).count()
 
-    # def save(self, *args, **kwargs):
-    #     self.title = self.meetup_title
-    #     self.slug = slugify(self.meetup_title)
-    #     super(Meetup, self).save(*args, **kwargs)
+
+class Comments(models.Model):
+    meetup = models.ForeignKey(Meetup, on_delete=models.CASCADE, related_name='comments')
+    body = models.TextField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user")
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["created_on"] 
+
+    def __str__(self):
+        return f"Comment {self.body} by {self.username}"
+
+    @property
+    def username(self):
+        return self.user.username
