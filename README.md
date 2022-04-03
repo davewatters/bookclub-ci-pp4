@@ -143,6 +143,8 @@ To fulfil the needs of the site's users, the following features were implemented
 ### Bugs  
 
 1. Github & LinkedIn fontawsome incons won't correctly apply css class style. https://github.com/twbs/bootstrap/issues/30343.  _reboot.scss:251
+1. `navbar-toggler` / `navbar-collapse` button stopped working [ `templates/base.html` ]
+    - **Fixed**: Was initially using Bootstrap 5 property `data-bs-toggle` & `data-bs-target` but changed to use BS4 (for compatibility with `django-crispy-forms`).  Correct properties for BS4 are `data-toggle` & `data-target`
 <!---  --->
 <!--- end of testing section --->
 <!---  --->
@@ -162,7 +164,10 @@ dj3-cloudinary-storage
 django-allauth
 django-crispy-forms
 ```
-
+- Heroku `Procfile` requires the following content
+```
+web: gunicorn bookclub.wsgi:application
+```
 
 ### Heroku  
 The live deployed site can be viewed on Heroku [HERE](https://ci-pp4-dw-bookclub.herokuapp.com)
