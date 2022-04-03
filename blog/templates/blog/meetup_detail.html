@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block content %}
+
 <div class="container">
+
   <div class="row">
-    
     <!-- Meetup details in a central card -->
     <div class="col-sm py-4">
       <div class="card shadow">
@@ -28,6 +30,7 @@
                 <p class="card-text"><h3>{{ meetup.book1_detail.title }}</h3></p>
                 <p class="card-text"><h4>{{  meetup.book1_detail.author }}</h4></p>
                 <p class="card-text">Year Published: {{ meetup.book1.year_published }}</p>
+                <p class="card-text">Publisher: {{ meetup.book1.publisher }}</p>
                 <hr>
                   <p class="card-text">{{ meetup.book1.synopsis }}</p>
                   <hr>
@@ -43,20 +46,22 @@
         </div>
       </div>
     </div>
-    <!-- end details container card -->
   </div>
+  <!-- end details container card -->
+
+  <!-- Meetup comments in a central card -->
   <div class="row">
-    <!-- Meetup comments in a central card -->
-    <div class="col-sm py-4">
+    <div class="col-sm py-2">
       <div class="card shadow">
         <div class="card-header">
           <div class="row justify-content-between">
-            <div class="ml-4 card-text"><strong>{{ meetup.no_of_comments }} Comments</strong></div>
+            <div class="ml-4 card-text"><strong>{{ meetup.no_of_comments }} Comment{{ meetup.no_of_comments|pluralize }}</strong></div>
             {% if user.is_authenticated %}
             <!-- Show a btn to Leave a comment -->
-            <div class="mr-4 btn btn-secondary">
+            <a href="#meetup-comment-form" data-toggle="collapse" class="mr-4 btn btn-secondary" 
+                  aria-expanded="false" aria-controls="meetup-comment-form">
               Leave a Comment
-            </div>
+            </a>
             {% else %}
             <div class="mr-4">
               <a href="{% url 'account_login' %}">Login to join the discussion</a>
@@ -78,18 +83,36 @@
                     </span>
                     <strong>{{ comment.username }} </strong>wrote:
                 </p>
-                <!-- The body of the comment goes before the | -->
                 {{ comment.body | linebreaks }}
                 <hr>
             </div>
-            <!-- Our for loop ends here -->
             {% endfor %}
         </div>
+      </div>
     </div>
-    <!-- end comments container card -->
-
   </div>
-  <!-- end outer row -->
+  <!-- end comments container card -->
+
+  <!-- Form to post a comment goes here -->
+  <div class="row">
+    <div class="col-sm py-2">
+      <div id="meetup-comment-form" class="collapse">
+        <div class="card shadow">
+          <div class="card-header">
+            Posting as: {{ user.username }}
+          </div>
+          <div class="card-body">
+            <form method="POST">
+              {{ comment_form | crispy }}
+              {% csrf_token %}
+              <button type="submit" class="btn btn-success btn-lg">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 <!-- end container -->
 {% endblock content %}

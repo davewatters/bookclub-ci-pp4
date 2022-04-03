@@ -67,3 +67,14 @@ body {
   width: 50%;
 }
 
+.row-1{
+  background-color: paleturquoise;
+}
+
+.row-2{
+  background-color: palegreen;
+}
+
+.row-3{
+  background-color: palegoldenrod;
+}
