@@ -25,7 +25,7 @@ class Book(models.Model):
 
     @property
     def long_title(self):
-        return (self.title +' by ' +self.author)
+        return (self.title +' - ' +self.author)
 
 
 class Meetup(models.Model):

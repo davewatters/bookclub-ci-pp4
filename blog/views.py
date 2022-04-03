@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
-from .models import Meetup, Comments
+from .models import Meetup, Comments, Book
 
 
 class MeetupList(generic.ListView):
@@ -20,3 +20,8 @@ class MeetupDetail(View):
                 'comments': comments,
             },
         )
+
+
+class BookList(generic.ListView):
+    model = Book
+    ordering = ['title']
