@@ -4,7 +4,7 @@
 
 <br />
 
-You can view the live deployed app [HERE.](https://ci-pp4-dw-bookclub.herokuapp.com/)
+You can view the live deployed app [HERE.](https://bookclub-blog-ci-pp4.herokuapp.com/)
 <br />
 
 <!-- Responsive desgin sample image from http://ami.responsivedesign.is/ -->
@@ -170,7 +170,7 @@ web: gunicorn bookclub.wsgi:application
 ```
 
 ### Heroku  
-The live deployed site can be viewed on Heroku [HERE](https://ci-pp4-dw-bookclub.herokuapp.com)
+The live deployed site can be viewed on Heroku [HERE](https://bookclub-blog-ci-pp4.herokuapp.com)
 
 The Project repository (repo) is at [https://github.com/davewatters/](https://github.com/davewatters/bookclub-ci-pp4)
 
