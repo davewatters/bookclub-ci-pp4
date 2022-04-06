@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Delete Meetup</h1>
+<hr>
+<p>{{ meetup.long_title }}</p>
+<p>Are you sure you want to delete?</p>
+<hr>
+<form method="post" action="{% url 'meetup-delete' meetup.slug %}">
+  {% csrf_token %}
+  <button class="btn btn-outline-danger" type="submit">Confirm</button>
+  <a class="btn btn-outline-secondary" href="{% url 'meetup_detail' meetup.slug %}">Cancel</a>
+</form>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-10 col-lg-6 card my-4 shadow">
+      <div class="">
+        <h3>Add a New Club Meetup Event</h3>
+   
+        <form class="login" method="POST" >
+          <!-- <form class="login" method="POST" action="{% url 'meetup-create' %}"> -->
+          {% csrf_token %}
+          {{ form|crispy }}
+          <button class="btn-sm btn-info mb-2" type="submit">Save</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

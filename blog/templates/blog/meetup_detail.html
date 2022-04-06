@@ -5,12 +5,21 @@
 
 <div class="container">
 
+
+  <!-- Meetup details in a central card -->
   <div class="row">
-    <!-- Meetup details in a central card -->
     <div class="col-sm py-4">
       <div class="card shadow">
-        <div class="card-header">
-          {{ meetup.long_title }}
+        <div class="card-header d-flex">
+          <div class="col-6" >{{ meetup.long_title }}</div>
+          <div class="col-6 card-text text-right">
+            <!-- If user is organiser show additional options-->
+            {% if request.user.is_staff  %}
+            <a href="{% url 'meetup-delete' meetup.slug %}" class="btn-sm btn-danger me-4" >Del</a>
+              <a href="{% url 'meetup-update' meetup.slug %}" class="btn-sm btn-info" >Edit</a>
+            {% endif %}
+        </div>
+
         </div>
         <div class="card-body">
           <div class="row">
@@ -72,13 +81,10 @@
         <!-- end comments header -->
 
         <div class="card-body">
-            <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
             {% for comment in comments %}
             <div class="comments">
                 <p class="">
-                    <!-- The commenter's name goes here. Check the model if you're not sure what that is -->
                     <span class=" text-muted font-weight-normal">
-                      <!-- The comment's created date goes here -->
                       {{ comment.created_on }}
                     </span>
                     <strong>{{ comment.username }} </strong>wrote:

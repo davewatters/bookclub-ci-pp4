@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
+from django.utils.text import slugify
 
 from cloudinary.models import CloudinaryField
 
@@ -46,12 +48,12 @@ class Meetup(models.Model):
     class Meta:
         ordering = ["-meetup_date"]
 
+    def __str__(self):
+        return self.title
+
     @property
     def long_title(self):
          return ('Meetup '+str(self.id) + self.meetup_date.strftime(': %B, %Y'))
-
-    def __str__(self):
-        return self.title
 
     @property
     def book1_detail(self):
@@ -60,6 +62,10 @@ class Meetup(models.Model):
     @property
     def no_of_comments(self):
         return Meetup.objects.filter(comments__meetup=self.id).count()
+
+    def get_absolute_url(self):
+        return reverse('meetup_detail', kwargs={'slug': self.slug})
+
 
 
 class Comments(models.Model):

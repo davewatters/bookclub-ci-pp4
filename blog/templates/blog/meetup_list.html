@@ -2,12 +2,35 @@
 {% load static %}
 {% block content %}
 <div class="container-fluid">
+
+  <!-- page-header -->
+  <div class="row justify-content-center">
+    <!-- <div class="div"> -->
+      <div class="card col-md-10 shadow">
+        <div class="card-body" >
+          <div class="row">
+
+          <div class="col-6 card-text"><h4>Book Club Meetups</h4></div>
+          <div class="col-6 card-text text-right">
+              <!-- If user is organiser show additional options-->
+              {% if request.user.is_staff  %}
+                <a href="{% url 'meetup-create' %}" class="btn-sm btn-info" >Add New</a>
+                <!-- <a href="{% url 'meetup-create' %}"><button class="btn-sm btn-info" >Add New</button></a> -->
+              {% endif %}
+          </div>
+
+          </div>
+        </div>
+      </div>
+    <!-- </div> -->
+  </div>
+
+  <!-- List the Meetup info in card style -->
   <div class="row">
-    <!-- List the Meetup info in card style -->
     <div class="col-12 mt-3 left">
       <div class="row">
           {% for meetup in meetup_list %}
-          <div class="col-md-4">
+          <div class="col-md-6">
             <div class="card mb-4 card-max-h shadow">
               <div class="card-body text-center"><h5>{{ meetup.title }}</h5></div>
 
