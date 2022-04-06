@@ -3,6 +3,12 @@
 /* 
   Global styling
 */
+/* * {
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+} */
 
 :root {
   /* Initialise gloabl vars */
@@ -13,10 +19,7 @@
   --header-font-family: "Lato", serif;
   --text-font-family: "Lato", serif;
   --logo-font-family: "Times", serif;
-  /* --text-font-size: 1rem; */
-  --btn-font-size: 1.6rem;
-  --btn-colour: #9acd32;
-  --btn-active-colour: #aaff01;
+  --text-font-size: 1rem;
 }
 
 body {
@@ -33,6 +36,7 @@ body {
 */
 .logo {
   font: var(--logo-font-family);
+  font-size: large;
   font-weight: bold;
   color: brown;
 }
@@ -61,12 +65,20 @@ body {
     align-items: center;
     display: flex;
     justify-content: center;
+    padding: 1rem;
 }
 
 .bookcover-img {
-  width: 50%;
+  height: 15rem;
 }
 
+.header-banner {
+  background-color: antiquewhite;
+  display: flex;
+  align-items: center;
+}
+
+/* just for testing */
 .row-1{
   background-color: paleturquoise;
 }
@@ -78,3 +90,52 @@ body {
 .row-3{
   background-color: palegoldenrod;
 }
+
+
+
+/*
+ * Bootstrap v4.6.1 (https://getbootstrap.com/)
+ */
+
+.card {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0rem;
+}
+
+.card-body {
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1.25rem;
+}
+
+.card-title {
+  margin-bottom: 0.75rem;
+}
+
+.card-header {
+  /* padding: 0.75rem 1.25rem; */
+  padding: 0.25.rem;
+  margin-bottom: 0;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.card-footer {
+  padding: 0.75rem 1.25rem;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
+/*
+ * END END END Bootstrap v4.6.1 
+ */
+

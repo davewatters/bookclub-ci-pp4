@@ -52,3 +52,18 @@ class MeetupDetail(View):
         )
 
 
+class CreateMeetup(generic.CreateView):
+    model = Meetup
+    fields = '__all__'
+
+
+class UpdateMeetup(generic.UpdateView):
+    model = Meetup
+    fields = '__all__'
+
+
+class DeleteMeetup(generic.DeleteView):
+    model = Meetup
+    success_url = '/'
+
+
