@@ -17,8 +17,7 @@ class Book(models.Model):
     slug = models.SlugField(max_length=200, unique=True)
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
-    # created_by = models.ForeignKey(User)
-
+    
     def __str__(self):
         return self.title
 
@@ -28,6 +27,9 @@ class Book(models.Model):
     @property
     def long_title(self):
         return (self.title +' - ' +self.author)
+
+    def get_absolute_url(self):
+        return reverse('book-list')
 
 
 class Meetup(models.Model):
@@ -44,6 +46,8 @@ class Meetup(models.Model):
     details = models.TextField(blank=False)
     status = models.IntegerField(choices=MEETUP_STATUS, default=0)
     slug = models.SlugField(max_length=40, unique=True)
+    # last_modified = models.DateTimeField(auto_now=True)
+    # modified_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user")
 
     class Meta:
         ordering = ["-meetup_date"]
@@ -73,6 +77,7 @@ class Comments(models.Model):
     body = models.TextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user")
     created_on = models.DateTimeField(auto_now_add=True)
+    # last_modified = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ["created_on"] 

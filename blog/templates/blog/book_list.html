@@ -2,22 +2,50 @@
 {% load static %}
 {% block content %}
 <div class="container-fluid">
+  
+  <!-- banner-header -->
+  <div class="row justify-content-center">
+    <div class="card col-md-10 shadow">
+      <div class="card-body" >
+        <div class="row">
+          
+          <div class="col-6 card-text"><h4>Our Library</h4></div>
+          <div class="col-6 card-text text-right">
+            <!-- If user is organiser show additional options-->
+            {% if request.user.is_staff  %}
+            <a href="{% url 'book-create' %}" class="btn-sm btn-info" >Add New</a>
+            {% endif %}
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- List books in collapsible accordion style -->
   <div class="row">
-
-    <!-- List books in collapsible accordion style -->
     {% for book in book_list %}
     <div class="container">
       <div id="accordion">
         <div class="card">
-          <div class="card-text" id="booktitile-{{book.id}}">
-            <h5>
-              <button class="btn btn-link collapsed" data-toggle="collapse"
-                          data-target="#book-{{book.id}}" aria-expanded="false"
-                          aria-controls="book-{{book.id}}">
-                {{ book.long_title}}
-              </button>
-            </h5>
+          <div class="row d-flex align-items-center">
+            
+            <div class="card-text col-10" id="booktitile-{{book.id}}">
+              <h5><button class="btn btn-link collapsed" data-toggle="collapse"
+                            data-target="#book-{{book.id}}" aria-expanded="false"
+                            aria-controls="book-{{book.id}}">
+                  {{ book.long_title}}
+                </button></h5>
+            </div>
+            <div class="col-2">
+            <!-- If user is organiser show additional options-->
+            {% if request.user.is_staff  %}
+            <a href="{% url 'book-delete' book.pk %}" class="btn-sm btn-outline-danger me-4" >Del</a>
+            <a href="{% url 'book-update' book.pk %}" class="btn-sm btn-outline-info" >Edit</a>
+            {% endif %}
+            </div>
           </div>
+
         </div>
         <div id="book-{{book.id}}" class="collapse" aria-labelledby="booktitile-{{book.id}}" data-parent="#accordion">
           <div class="card-body">
