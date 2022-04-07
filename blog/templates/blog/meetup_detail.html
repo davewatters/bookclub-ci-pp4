@@ -41,7 +41,7 @@
                 <p class="card-text">Year Published: {{ meetup.book1.year_published }}</p>
                 <p class="card-text">Publisher: {{ meetup.book1.publisher }}</p>
                 <hr>
-                  <p class="card-text">{{ meetup.book1.synopsis }}</p>
+                  <p class="card-text">{{ meetup.book1.synopsis |linebreaks }}</p>
                   <hr>
                   <p class="card-text">Members' Rating: {{ meetup.book1.members_rating }}</p>
               </div>
@@ -51,7 +51,7 @@
         <div class="card-footer">
           <div class="px-2">
             <p>Organiser's Note:</p>
-            <p>{{ meetup.details }}</p></div>
+            <p>{{ meetup.details |linebreaks }}</p></div>
         </div>
       </div>
     </div>
@@ -63,34 +63,41 @@
     <div class="col-sm py-2">
       <div class="card shadow">
         <div class="card-header">
-          <div class="row justify-content-between">
-            <div class="ml-4 card-text"><strong>{{ meetup.no_of_comments }} Comment{{ meetup.no_of_comments|pluralize }}</strong></div>
+          <div class="row justify-content-between align-items-center">
             {% if user.is_authenticated %}
+            <div class="ml-4">
             <!-- Show a btn to Leave a comment -->
-            <a href="#meetup-comment-form" data-toggle="collapse" class="mr-4 btn btn-secondary" 
-                  aria-expanded="false" aria-controls="meetup-comment-form">
-              Leave a Comment
-            </a>
+              <a href="#meetup-comment-form" data-toggle="collapse" class="btn btn-secondary"
+              aria-expanded="false" aria-controls="meetup-comment-form">Leave a Comment</a>
             {% else %}
-            <div class="mr-4">
-              <a href="{% url 'account_login' %}">Login to join the discussion</a>
-            </div>
+              <a href="{% url 'account_login' %}" class="btn btn-secondary">Login to join the discussion</a>
             {% endif %}
-          </div>
+            </div>
+            <div class="mr-4 card-text"><strong>{{ meetup.no_of_comments }} Comment{{ meetup.no_of_comments|pluralize }}</strong></div>
         </div>
+      </div>
         <!-- end comments header -->
 
         <div class="card-body">
             {% for comment in comments %}
             <div class="comments">
                 <p class="">
+                    <span>
+                      <!-- if it's the user's comment then allow delete -->
+                      {% if user.is_authenticated and user.id == comment.user.id %}
+                      <a href="{% url 'comment-delete' comment.pk %}" class="btn-sm btn-danger me-4" >Del</a>
+                      {% endif %}
+                    </span>
                     <span class=" text-muted font-weight-normal">
                       {{ comment.created_on }}
                     </span>
                     <strong>{{ comment.username }} </strong>wrote:
                 </p>
+
+                <p>
                 {{ comment.body | linebreaks }}
-                <hr>
+                </p>
+              <hr>
             </div>
             {% endfor %}
         </div>

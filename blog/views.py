@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
+from django.urls import reverse_lazy
 from django.views import generic, View
+
 from .models import Meetup, Comments, Book
 from .forms import CommentForm
 
@@ -113,3 +115,18 @@ class DeleteBook(generic.DeleteView):
     model = Book
     success_url = '/library/'
 
+
+class DeleteComment(generic.DeleteView):
+    '''
+    Allow user to delete their own comment
+    '''
+    model = Comments
+    # print('*'*50)
+    # print(model)
+    # print('*'*50)
+    # print(model.objects.get(slug=))
+    # print('*'*50)
+
+    # After successful comment delete I wan to stay on current page
+    # Need to find a way to redirect to meetups/<slug:slug>/
+    success_url = ('/')

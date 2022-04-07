@@ -83,8 +83,12 @@ class Comments(models.Model):
         ordering = ["created_on"] 
 
     def __str__(self):
-        return f"Comment {self.body} by {self.username}"
+        return f"Comment: {self.body}, by {self.username}"
 
     @property
     def username(self):
         return self.user.username
+
+    def get_absolute_url(self):
+        return reverse('meetup_detail', kwargs={'pk': self.pk })
+
