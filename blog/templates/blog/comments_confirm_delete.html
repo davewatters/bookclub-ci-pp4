@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Delete Comment</h1>
+<hr>
+<p>Comment created on: {{ comments.created_on }}</p>
+<p>{{ comments }}</p>
+<p>Are you sure you want to delete?</p>
+<hr>
+<form method="post" action="{% url 'comment-delete' comments.id %}">
+  {% csrf_token %}
+  <button class="btn btn-outline-danger" type="submit">Delete</button>
+  <a class="btn btn-outline-secondary" href="{% url 'meetup_detail' comments.meetup.slug %}">Cancel</a>
+</form>
+{% endblock %}
