@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic, View
@@ -58,7 +59,7 @@ class MeetupDetail(View):
         )
 
 
-class CreateMeetup(generic.CreateView):
+class CreateMeetup(LoginRequiredMixin, generic.CreateView):
     '''
     Allows user to add a new Meetup record
     '''
@@ -66,7 +67,7 @@ class CreateMeetup(generic.CreateView):
     fields = '__all__'
 
 
-class UpdateMeetup(generic.UpdateView):
+class UpdateMeetup(LoginRequiredMixin, generic.UpdateView):
     '''
     Allows user to modify an exsiting Meetup record
     '''
@@ -74,7 +75,7 @@ class UpdateMeetup(generic.UpdateView):
     fields = '__all__'
 
 
-class DeleteMeetup(generic.DeleteView):
+class DeleteMeetup(LoginRequiredMixin, generic.DeleteView):
     '''
     Allows user to delete a Meetup record
     '''
@@ -84,7 +85,7 @@ class DeleteMeetup(generic.DeleteView):
 ##
 # CRUD Functions for Books 
 #
-class CreateBook(generic.CreateView):
+class CreateBook(LoginRequiredMixin, generic.CreateView):
     '''
     Allow user to add a new Book record
     '''
@@ -100,7 +101,7 @@ class BookList(generic.ListView):
     ordering = ['title']
 
 
-class UpdateBook(generic.UpdateView):
+class UpdateBook(LoginRequiredMixin, generic.UpdateView):
     '''
     Allow user to modify an exsiting Book record
     '''
@@ -108,7 +109,7 @@ class UpdateBook(generic.UpdateView):
     fields = '__all__'
 
 
-class DeleteBook(generic.DeleteView):
+class DeleteBook(LoginRequiredMixin, generic.DeleteView):
     '''
     Allow user to delete a Book record
     '''
@@ -116,17 +117,18 @@ class DeleteBook(generic.DeleteView):
     success_url = '/library/'
 
 
-class DeleteComment(generic.DeleteView):
+class DeleteComment(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
     '''
-    Allow user to delete their own comment
+    Allo user to delete comment. 
+    User can delete comment only if they created it.
     '''
-    model = Comments
-    # print('*'*50)
-    # print(model)
-    # print('*'*50)
-    # print(model.objects.get(slug=))
-    # print('*'*50)
-
-    # After successful comment delete I wan to stay on current page
-    # Need to find a way to redirect to meetups/<slug:slug>/
+    model = Comments    
     success_url = ('/')
+    
+    def test_func(self):
+        comment = self.get_object()
+        if self.request.user == comment.user:
+            return True
+        return False
+
+
