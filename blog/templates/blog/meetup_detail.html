@@ -64,14 +64,14 @@
       <div class="card shadow">
         <div class="card-header">
           <div class="row justify-content-between align-items-center">
-            {% if user.is_authenticated %}
             <div class="ml-4">
-            <!-- Show a btn to Leave a comment -->
-              <a href="#meetup-comment-form" data-toggle="collapse" class="btn btn-secondary"
-              aria-expanded="false" aria-controls="meetup-comment-form">Leave a Comment</a>
-            {% else %}
-              <a href="{% url 'account_login' %}" class="btn btn-secondary">Login to join the discussion</a>
-            {% endif %}
+              {% if user.is_authenticated %}
+              <!-- Show a btn to Leave a comment -->
+              <a href="#meetup-comment-form" data-toggle="collapse" class="btn btn-primary"
+                aria-expanded="false" aria-controls="meetup-comment-form">Leave a Comment</a>
+              {% else %}
+              <a href="{% url 'account_login' %}" class="btn btn-primary">Login to join the discussion</a>
+              {% endif %}
             </div>
             <div class="mr-4 card-text"><strong>{{ meetup.no_of_comments }} Comment{{ meetup.no_of_comments|pluralize }}</strong></div>
         </div>

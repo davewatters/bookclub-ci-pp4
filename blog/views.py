@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic, View
@@ -19,7 +20,7 @@ class MeetupList(generic.ListView):
 class MeetupDetail(View):
     '''
     Displays details of selected Meetup.
-    Accepts New & Displays associated User Comments.
+    Accepts New & displays associated User Comments.
     '''
     def get(self, request, slug, *args, **kwargs):
         meetup = Meetup.objects.get(slug=slug)
@@ -58,38 +59,55 @@ class MeetupDetail(View):
         )
 
 
-class CreateMeetup(generic.CreateView):
+class CreateMeetup(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView):
     '''
-    Allows user to add a new Meetup record
-    '''
-    model = Meetup
-    fields = '__all__'
-
-
-class UpdateMeetup(generic.UpdateView):
-    '''
-    Allows user to modify an exsiting Meetup record
+    Allows user to add a new Meetup record. Only a meetup organiser
+    can do this (orgainser has auth_user.is_staff bool set to True).
     '''
     model = Meetup
     fields = '__all__'
 
+    def test_func(self):
+        return self.request.user.is_staff
 
-class DeleteMeetup(generic.DeleteView):
+
+class UpdateMeetup(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     '''
-    Allows user to delete a Meetup record
+    Allows user to modify an exsiting Meetup record. Only a meetup organiser
+    can do this (orgainser has auth_user.is_staff bool set to True).
+    '''
+    model = Meetup
+    fields = '__all__'
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+
+class DeleteMeetup(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+    '''
+    Allows user to delete a Meetup record. Only a meetup organiser
+    can do this (orgainser has auth_user.is_staff bool set to True).
     '''
     model = Meetup
     success_url = '/'
 
+    def test_func(self):
+        return self.request.user.is_staff
+
+
 ##
 # CRUD Functions for Books 
 #
-class CreateBook(generic.CreateView):
+class CreateBook(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView):
     '''
-    Allow user to add a new Book record
+    Allow user to add a new Book record. Only a meetup organiser
+    can do this (orgainser has auth_user.is_staff bool set to True).
     '''
     model = Book
     fields = '__all__'
+
+    def test_func(self):
+        return self.request.user.is_staff
 
 
 class BookList(generic.ListView):
@@ -99,34 +117,45 @@ class BookList(generic.ListView):
     model = Book
     ordering = ['title']
 
+    def test_func(self):
+        return self.request.user.is_staff
 
-class UpdateBook(generic.UpdateView):
+
+class UpdateBook(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     '''
-    Allow user to modify an exsiting Book record
+    Allow user to modify an exsiting Book record.
+    Only a meetup organiser can do this.
     '''
     model = Book
     fields = '__all__'
 
+    def test_func(self):
+        return self.request.user.is_staff
 
-class DeleteBook(generic.DeleteView):
+
+class DeleteBook(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
     '''
-    Allow user to delete a Book record
+    Allow user to delete a Book record.
     '''
     model = Book
     success_url = '/library/'
 
+    def test_func(self):
+        return self.request.user.is_staff
 
-class DeleteComment(generic.DeleteView):
-    '''
-    Allow user to delete their own comment
-    '''
-    model = Comments
-    # print('*'*50)
-    # print(model)
-    # print('*'*50)
-    # print(model.objects.get(slug=))
-    # print('*'*50)
 
-    # After successful comment delete I wan to stay on current page
-    # Need to find a way to redirect to meetups/<slug:slug>/
-    success_url = ('/')
+class DeleteComment(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+    '''
+    Allow user to delete comment. Remain on meetup_detail page.
+    User can delete comment only if they created it.
+    '''
+    model = Comments    
+    
+    def test_func(self):
+        comment = self.get_object()
+        return self.request.user == comment.user
+
+    def get_success_url(self):
+        # On successful delete, stay on same meetup page
+        meetup = self.object.meetup
+        return reverse_lazy('meetup_detail', kwargs={'slug': meetup.slug})
