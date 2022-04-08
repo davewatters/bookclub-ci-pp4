@@ -119,11 +119,10 @@ class DeleteBook(LoginRequiredMixin, generic.DeleteView):
 
 class DeleteComment(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
     '''
-    Allo user to delete comment. 
+    Allow user to delete comment. Remain on meetup_detail page.
     User can delete comment only if they created it.
     '''
     model = Comments    
-    success_url = ('/')
     
     def test_func(self):
         comment = self.get_object()
@@ -131,4 +130,7 @@ class DeleteComment(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView)
             return True
         return False
 
-
+    def get_success_url(self):
+        # On successful delete stay on same meetup page
+        meetup = self.object.meetup
+        return reverse_lazy('meetup_detail', kwargs={'slug': meetup.slug})
