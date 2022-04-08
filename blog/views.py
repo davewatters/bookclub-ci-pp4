@@ -20,7 +20,7 @@ class MeetupList(generic.ListView):
 class MeetupDetail(View):
     '''
     Displays details of selected Meetup.
-    Accepts New & Displays associated User Comments.
+    Accepts New & displays associated User Comments.
     '''
     def get(self, request, slug, *args, **kwargs):
         meetup = Meetup.objects.get(slug=slug)
@@ -59,38 +59,57 @@ class MeetupDetail(View):
         )
 
 
-class CreateMeetup(LoginRequiredMixin, generic.CreateView):
+class CreateMeetup(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView):
     '''
-    Allows user to add a new Meetup record
-    '''
-    model = Meetup
-    fields = '__all__'
-
-
-class UpdateMeetup(LoginRequiredMixin, generic.UpdateView):
-    '''
-    Allows user to modify an exsiting Meetup record
+    Allows user to add a new Meetup record. Only a meetup organiser
+    can do this (orgainser has auth_user.is_staff bool set to True).
     '''
     model = Meetup
     fields = '__all__'
 
+    def test_func(self):
+        return self.request.user.is_staff
 
-class DeleteMeetup(LoginRequiredMixin, generic.DeleteView):
+
+class UpdateMeetup(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     '''
-    Allows user to delete a Meetup record
+    Allows user to modify an exsiting Meetup record. Only a meetup organiser
+    can do this (orgainser has auth_user.is_staff bool set to True).
+    '''
+    model = Meetup
+    fields = '__all__'
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+
+
+
+class DeleteMeetup(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+    '''
+    Allows user to delete a Meetup record. Only a meetup organiser
+    can do this (orgainser has auth_user.is_staff bool set to True).
     '''
     model = Meetup
     success_url = '/'
 
+    def test_func(self):
+        return self.request.user.is_staff
+
+
 ##
 # CRUD Functions for Books 
 #
-class CreateBook(LoginRequiredMixin, generic.CreateView):
+class CreateBook(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView):
     '''
-    Allow user to add a new Book record
+    Allow user to add a new Book record. Only a meetup organiser
+    can do this (orgainser has auth_user.is_staff bool set to True).
     '''
     model = Book
     fields = '__all__'
+
+    def test_func(self):
+        return self.request.user.is_staff
 
 
 class BookList(generic.ListView):
@@ -100,21 +119,31 @@ class BookList(generic.ListView):
     model = Book
     ordering = ['title']
 
+    def test_func(self):
+        return self.request.user.is_staff
 
-class UpdateBook(LoginRequiredMixin, generic.UpdateView):
+
+class UpdateBook(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     '''
-    Allow user to modify an exsiting Book record
+    Allow user to modify an exsiting Book record.
+    Only a meetup organiser can do this.
     '''
     model = Book
     fields = '__all__'
 
+    def test_func(self):
+        return self.request.user.is_staff
 
-class DeleteBook(LoginRequiredMixin, generic.DeleteView):
+
+class DeleteBook(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
     '''
-    Allow user to delete a Book record
+    Allow user to delete a Book record.
     '''
     model = Book
     success_url = '/library/'
+
+    def test_func(self):
+        return self.request.user.is_staff
 
 
 class DeleteComment(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
@@ -126,11 +155,9 @@ class DeleteComment(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView)
     
     def test_func(self):
         comment = self.get_object()
-        if self.request.user == comment.user:
-            return True
-        return False
+        return self.request.user == comment.user
 
     def get_success_url(self):
-        # On successful delete stay on same meetup page
+        # On successful delete, stay on same meetup page
         meetup = self.object.meetup
         return reverse_lazy('meetup_detail', kwargs={'slug': meetup.slug})
