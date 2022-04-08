@@ -42,12 +42,12 @@ class Meetup(models.Model):
 
     title = models.CharField(max_length=40,unique=True)
     meetup_date = models.DateField(blank=False)
-    book1 = models.ForeignKey(Book, on_delete=models.PROTECT, related_name='book1')
+    book1 = models.ForeignKey(Book, on_delete=models.PROTECT, related_name='meetups')
     details = models.TextField(blank=False)
     status = models.IntegerField(choices=MEETUP_STATUS, default=0)
     slug = models.SlugField(max_length=40, unique=True)
-    # last_modified = models.DateTimeField(auto_now=True)
-    # modified_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user")
+    last_modified = models.DateTimeField(auto_now=True)
+    modified_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='meetups')
 
     class Meta:
         ordering = ["-meetup_date"]
@@ -71,13 +71,11 @@ class Meetup(models.Model):
         return reverse('meetup_detail', kwargs={'slug': self.slug})
 
 
-
 class Comments(models.Model):
     meetup = models.ForeignKey(Meetup, on_delete=models.CASCADE, related_name='comments')
     body = models.TextField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
     created_on = models.DateTimeField(auto_now_add=True)
-    # last_modified = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ["created_on"] 
