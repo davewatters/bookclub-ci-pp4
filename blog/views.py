@@ -83,8 +83,6 @@ class UpdateMeetup(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
         return self.request.user.is_staff
 
 
-
-
 class DeleteMeetup(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
     '''
     Allows user to delete a Meetup record. Only a meetup organiser
