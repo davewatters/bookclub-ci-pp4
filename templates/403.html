@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate '403 Forbidden' %}{% endblock title%}
+
+{% block content %}
+
+<h1>Server Error</h1>
+<h2>403 Forbidden</h2>
+<br>
+<p>We’re sorry, but you are not authorised to access the requested content.</p>
+<br>
+<p><a class="" href="{% url 'blog-home' %}">Click Here to go back to the Home Page</a></p>
+
+{% endblock content %}
