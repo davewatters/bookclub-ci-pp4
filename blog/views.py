@@ -159,3 +159,10 @@ class DeleteComment(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView)
         # On successful delete, stay on same meetup page
         meetup = self.object.meetup
         return reverse_lazy('meetup_detail', kwargs={'slug': meetup.slug})
+
+
+##
+# About Page
+#
+def about(request):
+    return render(request, 'blog/about.html')

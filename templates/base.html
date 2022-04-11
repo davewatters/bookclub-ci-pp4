@@ -22,7 +22,7 @@
 <body>
   <header>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
       <div class="container-fluid">
         <!-- Logo -->
         <a class="navbar-brand" href="{% url 'blog-home' %}"><span class="logo">Book Club</span></a>
@@ -43,7 +43,7 @@
             </li>
             <!-- menu item club bio/info -->
             <li class="nav-item">
-              <a class="nav-link" href="#">About Us</a>
+              <a class="nav-link" href="{% url 'blog-about' %}">About Us</a>
             </li>
             
             <!-- make the menu items right-aligned if poss? -->
