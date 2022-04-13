@@ -60,7 +60,7 @@ class Meetup(models.Model):
 
     @property
     def long_title(self):
-         return ('Meetup '+str(self.id) + self.meetup_date.strftime(': %B, %Y'))
+         return ('Meetup '+str(self.id) + self.meetup_date.strftime(': %a %-d %B, %Y'))
 
     @property
     def book1_detail(self):

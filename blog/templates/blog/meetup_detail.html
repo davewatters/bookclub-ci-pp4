@@ -15,8 +15,8 @@
           <div class="col-6 card-text text-right">
             <!-- If user is organiser show additional options-->
             {% if request.user.is_staff  %}
-            <a href="{% url 'meetup-delete' meetup.pk %}" class="btn-sm btn-danger me-4" >Del</a>
-            <a href="{% url 'meetup-update' meetup.pk %}" class="btn-sm btn-info" >Edit</a>
+            <a href="{% url 'meetup-delete' meetup.pk %}" class="btn btn-outline-danger me-4" ><i class="fa-regular fa-trash-can"></i></a>
+            <a href="{% url 'meetup-update' meetup.pk %}" class="btn btn-outline-info" ><i class="fa-regular fa-edit"></i></a>
             {% endif %}
         </div>
 
@@ -38,7 +38,7 @@
               <div class="card-body">
                 <p class="card-text"><h3>{{ meetup.book1_detail.title }}</h3></p>
                 <p class="card-text"><h4>{{  meetup.book1_detail.author }}</h4></p>
-                <p class="card-text">Year Published: {{ meetup.book1.year_published }}</p>
+                <p class="card-text">First Published: {{ meetup.book1.year_published }}</p>
                 <hr>
                   <p class="card-text">{{ meetup.book1.synopsis |linebreaks }}</p>
                   <hr>
@@ -51,6 +51,7 @@
           <div class="px-2">
             <p>Organiser's Note:</p>
             <p>{{ meetup.details |linebreaks }}</p></div>
+            <p class="text-center small text-muted">Organised by {{ meetup.modified_by }} | Last updated {{ meetup.last_modified }}</p>
         </div>
       </div>
     </div>
@@ -77,20 +78,21 @@
       </div>
         <!-- end comments header -->
 
+        <!-- begin list of comments -->
         <div class="card-body">
             {% for comment in comments %}
             <div class="comments">
-                <p class="">
-                    <span>
-                      <!-- if it's the user's comment then allow delete -->
-                      {% if user.is_authenticated and user.id == comment.user.id %}
-                      <a href="{% url 'comment-delete' comment.pk %}" class="btn-sm btn-danger me-4" >Del</a>
-                      {% endif %}
-                    </span>
-                    <span class=" text-muted font-weight-normal">
-                      {{ comment.created_on }}
-                    </span>
-                    <strong>{{ comment.username }} </strong>wrote:
+                <p class="card-text">
+                  <span>
+                    <!-- if it's the user's comment then allow delete -->
+                    {% if user.is_authenticated and user.id == comment.user.id %}
+                    <a href="{% url 'comment-delete' comment.pk %}" class="btn-sm btn-outline-danger me-4" ><i class="fa-regular fa-trash-can"></i></a>
+                    {% endif %}
+                  </span>
+                  <span class="small text-muted font-weight-normal">
+                    {{ comment.created_on }}
+                  </span>
+                  <strong>{{ comment.username }} </strong>wrote:
                 </p>
 
                 <p>
