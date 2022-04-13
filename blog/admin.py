@@ -6,8 +6,6 @@ from .models import Book, Meetup
 class BookAdmin(admin.ModelAdmin):
     
     list_display = ('title', 'author', 'year_published', 'members_rating', 'has_been_read')
-    prepopulated_fields = {'slug': ('title',)}
-    # list_filter = ('has_been_read')
 
 
 @admin.register(Meetup)

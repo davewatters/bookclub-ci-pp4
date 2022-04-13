@@ -7,16 +7,17 @@ from cloudinary.models import CloudinaryField
 
 
 class Book(models.Model):
+
     title = models.CharField(max_length=200, unique=True)
-    author= models.CharField(max_length=60, unique=True)
+    author = models.CharField(max_length=60, unique=True)
     publisher = models.CharField(max_length=40, blank=True)
     year_published = models.CharField(max_length=4, blank=True)
     synopsis = models.TextField(blank=True)
     cover_image = CloudinaryField('image', default='placeholder')
     members_rating = models.PositiveSmallIntegerField(default=0)
-    slug = models.SlugField(max_length=200, unique=True)
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
+    is_shortlisted = models.BooleanField()
     
     def __str__(self):
         return self.title
@@ -31,6 +32,11 @@ class Book(models.Model):
     def get_absolute_url(self):
         return reverse('book-list')
 
+
+class Votes(models.Model):
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='votes')
+    member = models.ForeignKey(User, on_delete=models.CASCADE, related_name='votes')
+    
 
 class Meetup(models.Model):
 
