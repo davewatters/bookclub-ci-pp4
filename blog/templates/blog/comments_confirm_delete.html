@@ -9,6 +9,6 @@
 <form method="post" action="{% url 'comment-delete' comments.id %}">
   {% csrf_token %}
   <button class="btn btn-outline-danger" type="submit">Delete</button>
-  <a class="btn btn-outline-secondary" href="{% url 'meetup_detail' comments.meetup.slug %}">Cancel</a>
+  <a class="btn btn-outline-secondary" href="{% url 'meetup_detail' comments.meetup.pk %}">Cancel</a>
 </form>
 {% endblock %}

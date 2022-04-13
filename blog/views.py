@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views import generic, View
 
 from .models import Meetup, Comments, Book
-from .forms import CommentForm
+from .forms import CommentForm, MeetupForm
 
 
 ##
@@ -22,8 +22,8 @@ class MeetupDetail(View):
     Displays details of selected Meetup.
     Accepts New & displays associated User Comments.
     '''
-    def get(self, request, slug, *args, **kwargs):
-        meetup = Meetup.objects.get(slug=slug)
+    def get(self, request, pk, *args, **kwargs):
+        meetup = Meetup.objects.get(pk=pk)
         comments = Comments.objects.filter(meetup=meetup.id).order_by('created_on')
         return render (
             request,
@@ -35,8 +35,8 @@ class MeetupDetail(View):
             },
         )
 
-    def post(self, request, slug, *args, **kwargs):
-        meetup = Meetup.objects.get(slug=slug)
+    def post(self, request, pk, *args, **kwargs):
+        meetup = Meetup.objects.get(pk=pk)
         comments = Comments.objects.filter(meetup=meetup.id).order_by('created_on')
         
         comment_form = CommentForm(data=request.POST)
@@ -65,10 +65,19 @@ class CreateMeetup(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView):
     can do this (orgainser has auth_user.is_staff bool set to True).
     '''
     model = Meetup
-    fields = '__all__'
+    fields = [
+        'title',
+        'meetup_date',
+        'book1',
+        'details',
+    ]
 
     def test_func(self):
         return self.request.user.is_staff
+
+    def form_valid(self, form):
+        form.instance.modified_by = self.request.user
+        return super().form_valid(form)
 
 
 class UpdateMeetup(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
@@ -77,10 +86,21 @@ class UpdateMeetup(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     can do this (orgainser has auth_user.is_staff bool set to True).
     '''
     model = Meetup
-    fields = '__all__'
+    fields = [
+        'title',
+        'meetup_date',
+        'book1',
+        'details',
+        'status',
+    ]
 
     def test_func(self):
         return self.request.user.is_staff
+
+    def form_valid(self, form):
+        # Update modified_by with the current user
+        form.instance.modified_by = self.request.user
+        return super().form_valid(form)
 
 
 class DeleteMeetup(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
@@ -158,7 +178,7 @@ class DeleteComment(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView)
     def get_success_url(self):
         # On successful delete, stay on same meetup page
         meetup = self.object.meetup
-        return reverse_lazy('meetup_detail', kwargs={'slug': meetup.slug})
+        return reverse_lazy('meetup_detail', kwargs={'pk': meetup.pk})
 
 
 ##

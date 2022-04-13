@@ -15,8 +15,8 @@
           <div class="col-6 card-text text-right">
             <!-- If user is organiser show additional options-->
             {% if request.user.is_staff  %}
-            <a href="{% url 'meetup-delete' meetup.slug %}" class="btn-sm btn-danger me-4" >Del</a>
-              <a href="{% url 'meetup-update' meetup.slug %}" class="btn-sm btn-info" >Edit</a>
+            <a href="{% url 'meetup-delete' meetup.pk %}" class="btn-sm btn-danger me-4" >Del</a>
+            <a href="{% url 'meetup-update' meetup.pk %}" class="btn-sm btn-info" >Edit</a>
             {% endif %}
         </div>
 
@@ -39,7 +39,6 @@
                 <p class="card-text"><h3>{{ meetup.book1_detail.title }}</h3></p>
                 <p class="card-text"><h4>{{  meetup.book1_detail.author }}</h4></p>
                 <p class="card-text">Year Published: {{ meetup.book1.year_published }}</p>
-                <p class="card-text">Publisher: {{ meetup.book1.publisher }}</p>
                 <hr>
                   <p class="card-text">{{ meetup.book1.synopsis |linebreaks }}</p>
                   <hr>

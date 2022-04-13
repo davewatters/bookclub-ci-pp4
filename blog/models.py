@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
-from django.utils.text import slugify
 
 from cloudinary.models import CloudinaryField
 
@@ -10,7 +9,6 @@ class Book(models.Model):
 
     title = models.CharField(max_length=200, unique=True)
     author = models.CharField(max_length=60, unique=True)
-    publisher = models.CharField(max_length=40, blank=True)
     year_published = models.CharField(max_length=4, blank=True)
     synopsis = models.TextField(blank=True)
     cover_image = CloudinaryField('image', default='placeholder')
@@ -51,7 +49,6 @@ class Meetup(models.Model):
     book1 = models.ForeignKey(Book, on_delete=models.PROTECT, related_name='meetups')
     details = models.TextField(blank=False)
     status = models.IntegerField(choices=MEETUP_STATUS, default=0)
-    slug = models.SlugField(max_length=40, unique=True)
     last_modified = models.DateTimeField(auto_now=True)
     modified_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='meetups')
 
@@ -74,7 +71,7 @@ class Meetup(models.Model):
         return Meetup.objects.filter(comments__meetup=self.id).count()
 
     def get_absolute_url(self):
-        return reverse('meetup_detail', kwargs={'slug': self.slug})
+        return reverse('meetup_detail', kwargs={'pk': self.pk})
 
 
 class Comments(models.Model):

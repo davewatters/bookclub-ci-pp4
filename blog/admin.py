@@ -12,4 +12,3 @@ class BookAdmin(admin.ModelAdmin):
 class MeetupAdmin(admin.ModelAdmin):
     
     list_display = ('long_title', 'meetup_date', 'book1')
-    prepopulated_fields = {'slug': ('title',)}
