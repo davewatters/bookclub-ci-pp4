@@ -20,12 +20,6 @@
 /* 
   Global styling
 */
-/* * {
-  margin: 0;
-  padding: 0;
-  border: none;
-  box-sizing: border-box;
-} */
 
 :root {
   /* Initialise gloabl vars */
@@ -41,13 +35,25 @@
   --text-font-size: 1rem;
 }
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body {
   background-color: var(--bg-colour) !important;
   color: var(--text-colour);
   font-family: var(--text-font-family);
   font-size: var(--text-font-size);
+  margin-bottom: 50px !important;
 }
 
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50px !important;
+}
 
 /* 
   Navbar
