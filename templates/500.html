@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate 'Page not found' %}{% endblock title %}
+
+{% block content %}
+
+<h1>500 Error</h1>
+<h2>Internal Server Error</h2>
+<hr>
+<p>We’re sorry, something went wrong and the server can't display the page.</p>
+<hr>
+<p><a class="" href="{% url 'blog-home' %}">Click Here to go back to the Home Page</a></p>
+
+{% endblock content %}

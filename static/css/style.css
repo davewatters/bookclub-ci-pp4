@@ -77,12 +77,12 @@ footer {
   Main home screen
 */
 .card-max-h {
-  height: 36rem;
+  height: 30rem;
 }
 
 .card-overflow {
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis !important;
 }
 
 .image-container {
@@ -93,7 +93,7 @@ footer {
 }
 
 .bookcover-img {
-  height: 15rem;
+  height: 12rem;
 }
 
 .header-banner {
