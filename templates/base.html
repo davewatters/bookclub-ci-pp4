@@ -12,9 +12,7 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
       integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
-
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
   <title>Bookclub Meetup</title>
@@ -26,37 +24,37 @@
       <div class="container-fluid">
         <!-- Logo -->
         <a class="navbar-brand" href="{% url 'blog-home' %}"><span class="logo">Book Club</span></a>
-
+        
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navToggle" 
-                    aria-controls="navToggle" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navToggle">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        aria-controls="navToggle" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navToggle">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <!-- using nav_<item> block placeholders to set relevnt nav-link "active" class in sub template -->
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{% url 'blog-home' %}">Meetups</a>
+              <a class="nav-link {% block nav_home %}{% endblock%}" aria-current="page" href="{% url 'blog-home' %}">Meetups</a>
             </li>
-            <!-- menu item to show the book list -->
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'book-list' %}">Our Library</a>
+              <a class="nav-link {% block nav_list %}{% endblock%}" href="{% url 'book-list' %}">Our Library</a>
             </li>
             <!-- menu item club bio/info -->
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'blog-about' %}">About Us</a>
+              <a class="nav-link {% block nav_about %}{% endblock%}" href="{% url 'blog-about' %}">About Us</a>
             </li>
             
-            <!-- make the menu items right-aligned if poss? -->
+            <!-- make the auth menu items right-aligned if poss? -->
             {% if user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'account_logout' %}">Logout {{ user.username }}</a>
+              <a class="nav-link {% block nav_logout %}{% endblock%}" href="{% url 'account_logout' %}">Logout {{ user.username }}</a>
             </li>
             {% else %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'account_signup' %}">Join the Club!</a>
+              <a class="nav-link {% block nav_signup %}{% endblock%}" href="{% url 'account_signup' %}">Join the Club!</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+              <a class="nav-link {% block nav_login %}{% endblock%}" href="{% url 'account_login' %}">Login</a>
             </li>
             {% endif %}
           </ul>
@@ -80,33 +78,30 @@
     </div>
   </div>
 
-
   <!-- Main page content container -->
   <main class="container">
     {% block content %}
     {% endblock content %}
   </main>
 
-    <!-- Footer -->
-    <footer class="footer mt-auto py-3 bg-light">
-      <div class="container-fluid d-flex justify-content-center">
-        <!-- LinkedIn -->
-          <a  class="social-link" href="https://www.linkedin.com/in/davidwattersit/"
-              role="button" target="_blank" aria-label="linkedin link"><i class="fab fa-lg fa-linkedin"></i></a>
-          <p class="px-4">Copyright &copy; 2022 David Watters</p>
-        <!-- Github link -->
-          <a class="social-link" href="https://github.com/davewatters"
-              role="button" target="_blank" aria-label="github link"><i class="fab fa-lg fa-github"></i></a>
-      </div>
-    </footer>
+  <!-- Footer -->
+  <footer class="footer mt-auto py-3 bg-light">
+    <div class="container-fluid d-flex justify-content-center">
+      <!-- LinkedIn -->
+        <a  class="social-link" href="https://www.linkedin.com/in/davidwattersit/"
+            role="button" target="_blank" aria-label="linkedin link"><i class="fab fa-lg fa-linkedin"></i></a>
+        <p class="px-4">Copyright &copy; 2022 David Watters</p>
+      <!-- Github link -->
+        <a class="social-link" href="https://github.com/davewatters"
+            role="button" target="_blank" aria-label="github link"><i class="fab fa-lg fa-github"></i></a>
+    </div>
+  </footer>
 
   <!-- Bootstrap JS plugin -->
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> -->
   <script src="{% static 'js/script.js' %}"></script>
 
 </body>
