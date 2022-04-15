@@ -2,6 +2,23 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Trocchi&display=swap');
 
+
+/* just for testing */
+.row-1{
+  background-color: paleturquoise;
+}
+
+.row-2{
+  background-color: palegreen;
+}
+
+.row-3{
+  background-color: palegoldenrod;
+}
+
+
+
+
 /* 
   Global styling
 */
@@ -81,17 +98,30 @@ body {
   align-items: center;
 }
 
-/* just for testing */
-.row-1{
-  background-color: paleturquoise;
+/*** Meetup Details **************************************/
+/* 
+*/
+
+/*
+* Star rating for books
+*/
+ .star-off {
+  color: grey;
 }
 
-.row-2{
-  background-color: palegreen;
+.star-on {
+  color: gold;
 }
 
-.row-3{
-  background-color: palegoldenrod;
+
+
+/*** Book List/Library **************************************/
+/* 
+  Booklist booktitle: rotate arrow to show expanded state
+*/
+h5 > a[aria-expanded="true"] .fa-circle-down {
+  transform: rotate(180deg);
+  transition: transform .5s;
 }
 
 
@@ -141,9 +171,3 @@ body {
 /*
  * END END END Bootstrap v4.6.1 
  */
-
-/* Booklist > booktitle: rotate arrow to show expanded state */
- h5>a[aria-expanded="true"] .fa-circle-down {
-   transform: rotate(180deg);
-   transition: transform .5s;
- }
