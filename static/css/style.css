@@ -100,6 +100,17 @@ body {
 /* 
 */
 
+
+/*** Book List/Library **************************************/
+/* 
+  Booklist booktitle: rotate arrow to show expanded state
+*/
+h5 > a[aria-expanded="true"] .fa-circle-down {
+  transform: rotate(180deg);
+  transition: transform .5s;
+}
+
+
 /*
 * Star rating for books
 */
@@ -110,16 +121,6 @@ body {
 .star-on {
   color: gold;
 }
-
-
-/*** Book List/Library **************************************/
-/* 
-  Booklist booktitle: rotate arrow to show expanded state
-*/
- h5 > a[aria-expanded="true"] .fa-circle-down {
-   transform: rotate(180deg);
-   transition: transform .5s;
- }
 
 
  /*
@@ -167,4 +168,3 @@ body {
 /*
  * END END END Bootstrap v4.6.1 
  */
-
