@@ -36,7 +36,7 @@
 
 ### HTML
 ### CSS
-### HavScript
+### JavaScript
 ### Python PEP8
 The [PEP8 Online](http://pep8online.com) linter was used to ensure the code adhered to the Python Style Guidelines.
 <h2 align="center"><img src=pep8.png></h2>
