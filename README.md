@@ -8,7 +8,7 @@ You can view the live deployed app [HERE.](https://bookclub-blog-ci-pp4.herokuap
 <br />
 
 <!-- Responsive desgin sample image from http://ami.responsivedesign.is/ -->
-<h2 align="center"><img src="readme-docs/#"></h2>
+<h2 align="center"><img src="readme-docs/ci-pp4-bookclub-responsive-mockup.png"></h2>
 
 ## - Table of Contents -
 * [Purpose](#purpose)
@@ -24,8 +24,7 @@ You can view the live deployed app [HERE.](https://bookclub-blog-ci-pp4.herokuap
 
 An interactive social blog site for a Dubin Bookclub Meetup group.  The club meets once a month in a social setting to discuss the books assigned for reading through popular vote. 
 
-Organisers can post details of the books to be read for the next meetup.  Members can leave comments on the books or the meeting and suggest new books for the group to read and dsicuss.  Members can also vote for which books will be on next months reading list from the list of suggested books.  Comments are only visibe to authenticated (logged-in) members unless they poster marks it as a public comment.  
-
+Organisers can post details of the books to be read for the next meetup.  Members can leave comments on the books or the meeting and suggest new books for the group to read and dsicuss.  Members can also vote for which books will be on next months reading list from the list of suggested books.  Comments are only visibe to authenticated (logged-in) members.
 
 
 ## - User Experience Design -
@@ -58,25 +57,28 @@ Organisers can post details of the books to be read for the next meetup.  Member
 
 - ### Design
     -   #### Layout
+        A simple blog site style layout is used. Logo and site navigation is visible along the top bar and a simple footer on the bottom of the viewport.  Content is displayed in Boostrap 'card' styled sections on the main page. 
          
     -   #### Content
        
     -   #### User Input
-         
-    -   #### Process/Logic Flow
-        The basic menu-driven logic flow through the program is illustrated in the following flowchart..  
-        <h2 align="center"><img src="readme-docs/flowchart-pwnytrap-ci-pp3.png"></h2>  
+        Data is input or updated using Boostrap forms. All user interaction controls are either standard Bootstrap buttons or intuitive Fontawsome icons. 
 
     -   #### Typography
-        The Google font..
+        The Google font Gill Sans was used for look of the Penguin Classic book covers, so I have chosen Google font Lato as it closely resembles that.
 
 
     -   #### Imagery
+        No elaborate background image graphics are needed for this site.  Registered users are able to upload an image of a book cover to enhance the display.  It is the books that will draw the user's attention to the meetup information. In the absence of a user-uploaded image, a default placeholder image of an untitled Penguin Books 'Classic' cover is used. 
            
     
     -   #### Wireframes
         I did not create wireframes with software like Balsamiq, but I have decided to include pictures of my pencil sketches of my layout design process.  These do not necessarily represent the final look of the site pages, but are presented here to show how I went about fleshing out my initial thoughts and ideas about how to structure the site before a line of code was written.
-<h2 align="center"><img src="readme-docs/wf-main-mobile.jpg"></h2>
+        <h2 align="center"><img src="readme-docs/wf-main-mobile.jpg"></h2>
+
+    -   #### Database Entity Relationship Diagram
+        <h2 align="center"><img src="readme-docs/db-erd-1.png"></h2>
+
 
 
 ## - Features -  
@@ -104,52 +106,30 @@ To fulfil the needs of the site's users, the following features were implemented
 1.  [Flake8](https://flake8.pycqa.org/en/latest/) linter extension for VScode 
 1.  [Heroku](https://www.heroku.com) was used to deploy the app
 1.  [LucidChart](https://lucidchart.com) was used to create the logic flowchart
-1.  [Boostrap 5]() front-end CSS toolkit
+1.  [Boostrap 4]() front-end CSS toolkit
 1.  [Font Awesome 6]() font and icon toolkit
+1.  [pgAdmin]() Postgres database GUI Tool used to generate the ERD 
 
 
 <!---  --->
 <!---  Begin testing section --->
 <!---  --->
 
-## - Testing -
-### UX Goals, User Stories
+## Testing
 
--   #### As a first time user...
-    -  I want to be able to intuitively navigate the site
-       
-    -  I want to easily find instructions to understand how to use the site
-        
-    -  I want to be able to 
-    -  I want the site to be visually clear & appealing  
-       
+All testing and code validation is documented [in this linked TESTING.md document](readme-docs/TESTING.md).
 
--   #### As a returning visitor...
-    -   I want to be able to 
-    -   I want to be able to view 
-
--   #### As a frequent user...
-    -   I want to to be able to increase the difficulty level of the game to make play more exciting  
-        
-
- 
-### Code Validation
--   The [PEP8 Online](http://pep8online.com) linter was used to ensure the code adhered to the Python Style Guidelines.
-<h2 align="center"><img src=readme-docs/pep8.png></h2>
-
--   **https://pythex.org** was used to test both regular expressions used in the program: `email_regex` and `html_regex`.  I tested that `check_email()` correctly identifies email addresses with, for example, spaces in the domain name, or a typo like a comma in place of the 'dot'. For the regex used in `strip_html()` I checked some sample descriptions from the breach info.
-
-
-### Bugs  
+## Bugs  
 
 1. Github & LinkedIn fontawsome incons won't correctly apply css class style. https://github.com/twbs/bootstrap/issues/30343.  _reboot.scss:251
 1. `navbar-toggler` / `navbar-collapse` button stopped working [ `templates/base.html` ]
     - **Fixed**: Was initially using Bootstrap 5 property `data-bs-toggle` & `data-bs-target` but changed to use BS4 (for compatibility with `django-crispy-forms`).  Correct properties for BS4 are `data-toggle` & `data-target`
+1. Bookcover image not being saved to book table for logged-in organiser.  Feature works when logged in as same user via /admin app.
 <!---  --->
 <!--- end of testing section --->
 <!---  --->
 
-## - Deployment -
+## Deployment
 
 ### Requirements
 - Python >=3.6, Django 3.2
@@ -194,14 +174,12 @@ Deployment of the site to Heroku was done as follows:
 
 ## - Credits - 
 
--   
+-   Inspired by The Dublin Book Club Meetup Group which used to meet monthly in a well known Dublin pub.  It was a great bunch of people who had lively debates and a laugh about all sorts of subjects - whether related the books or not.  Sadly, due to the Covid restrictions, it is no more.
 
 ### Code
 
--   No code was directly copied to this project but numerous resources helped me understand what I needed and how best to code it. These include: The official [Python Docs](https://docs.python.org), StackOverflow.com, W3Schools.com, RealPython.com  
--   _Automate the Boring Stuff with Python, 2nd Edition_, Al Sweigart. Very helpful as an intro to implementing regex searching in Python and also working with the `requests` and `json` modules
--   https://www.regular-expressions.info/email.html
-- 
+-   No code was directly copied to this project but numerous resources helped me understand what I needed and how best to code it. These include: [Mozilla MDN Web Docs](https://developer.mozilla.org/en-US/), the official [Python Docs](https://docs.python.org), official [Django Documentation](https://docs.djangoproject.com/en/3.2/), the [Bootstrap](https://developer.mozilla.org/en-US/) docs and code templates
+-   The usual suspects: StackOverflow.com, RealPython.com, etc.
 
 
 ### Acknowledgements
