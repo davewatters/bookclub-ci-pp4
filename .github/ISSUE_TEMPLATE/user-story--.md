@@ -9,10 +9,10 @@ assignees: ''
 
 As ** user ** I can ** capability ** so that ** received-benefit **
 
-Acceptance Criteria
+### Acceptance Criteria
 - User should be able to
 - 
 
-Tasks
-[ ] - Create a
-[ ] -
+### Tasks
+- [ ] Create a
+- [ ] 
