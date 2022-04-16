@@ -36,7 +36,13 @@
 
 ### HTML
 ### CSS
-### HavScript
+### JavScript
 ### Python PEP8
-The [PEP8 Online](http://pep8online.com) linter was used to ensure the code adhered to the Python Style Guidelines.
-<h2 align="center"><img src=pep8.png></h2>
+The [PEP8 Online](http://pep8online.com) linter was used to ensure the code adhered to the Python Style Guidelines. However, as this is a Django project an exception to PEP8 was made for line lengths greater than 79.  Where lines were up to 88 characters long and no better readability could be achieved by shortening them, they were left as is. Ref: [Django Coding Style](https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/coding-style/#python-style)
+
+-   admin.py
+<h2 align="center"><img src=admin_py-pep8.png></h2>
+-   models.py
+<h2 align="center"><img src=models_py-pep8.png></h2>
+- views.py
+<h2 align="center"><img src=views_py-pep8.png></h2>
