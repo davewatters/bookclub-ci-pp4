@@ -122,9 +122,10 @@ All testing and code validation is documented [in this linked TESTING.md documen
 ## Bugs  
 
 1. Github & LinkedIn fontawsome incons won't correctly apply css class style. https://github.com/twbs/bootstrap/issues/30343.  _reboot.scss:251
-1. `navbar-toggler` / `navbar-collapse` button stopped working [ `templates/base.html` ]
-    - **Fixed**: Was initially using Bootstrap 5 property `data-bs-toggle` & `data-bs-target` but changed to use BS4 (for compatibility with `django-crispy-forms`).  Correct properties for BS4 are `data-toggle` & `data-target`
-1. Bookcover image not being saved to book table for logged-in organiser.  Feature works when logged in as same user via /admin app.
+1. **FIXED** `navbar-toggler` / `navbar-collapse` button stopped working [ `templates/base.html` ]
+    - Fix: Was initially using Bootstrap 5 property `data-bs-toggle` & `data-bs-target` but changed to use BS4 (for compatibility with `django-crispy-forms`).  Correct properties for BS4 are `data-toggle` & `data-target`
+1. **FIXED** Bookcover image not being saved to book table for logged-in organiser.  Feature works when logged in as same user via `/admin` app interface.
+    - Fix: `enctype="multipart/form-data"` must be a property of a `form` in order to upload an image field. Ref: [Binding uploaded files to a form](https://docs.djangoproject.com/en/3.2/ref/forms/api/#binding-uploaded-files-to-a-form)
 <!---  --->
 <!--- end of testing section --->
 <!---  --->
