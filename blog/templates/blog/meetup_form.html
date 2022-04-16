@@ -10,8 +10,7 @@
       <div class="">
         <h3>Club Meetup Event</h3>
    
-        <form class="login" method="POST" >
-          <!-- <form class="login" method="POST" action="{% url 'meetup-create' %}"> -->
+        <form method="POST" >
           {% csrf_token %}
           {{ form|crispy }}
           <button class="btn-sm btn-info mb-2" type="submit">Save</button>
