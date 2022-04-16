@@ -24,8 +24,9 @@ class MeetupDetail(View):
     '''
     def get(self, request, pk, *args, **kwargs):
         meetup = Meetup.objects.get(pk=pk)
-        comments = Comments.objects.filter(meetup=meetup.id).order_by('created_on')
-        return render (
+        comments = Comments.objects.filter(
+                    meetup=meetup.id).order_by('created_on')
+        return render(
             request,
             'blog/meetup_detail.html',
             {
@@ -37,8 +38,9 @@ class MeetupDetail(View):
 
     def post(self, request, pk, *args, **kwargs):
         meetup = Meetup.objects.get(pk=pk)
-        comments = Comments.objects.filter(meetup=meetup.id).order_by('created_on')
-        
+        comments = Comments.objects.filter(
+                    meetup=meetup.id).order_by('created_on')
+
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
             comment_form.instance.user = request.user
@@ -48,7 +50,7 @@ class MeetupDetail(View):
         else:
             comment_form = CommentForm()
 
-        return render (
+        return render(
             request,
             'blog/meetup_detail.html',
             {
@@ -116,7 +118,7 @@ class DeleteMeetup(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
 
 
 ##
-# CRUD Functions for Books 
+# CRUD Functions for Books
 #
 class CreateBook(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView):
     '''
@@ -169,8 +171,8 @@ class DeleteComment(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView)
     Allow user to delete comment. Remain on meetup_detail page.
     User can delete comment only if they created it.
     '''
-    model = Comments    
-    
+    model = Comments
+
     def test_func(self):
         comment = self.get_object()
         return self.request.user == comment.user
