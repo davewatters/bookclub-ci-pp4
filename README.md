@@ -39,7 +39,7 @@ Organisers can post details of the books to be read for the next meetup.  Member
     -   ### Design Scope to Deliver MVP
         - #### Club Organiser Goals
             As a site admin...
-            - I wanto to be able to setup and manage the book list
+            - I want to to be able to setup and manage the book list
             - I want to be able to setup and manage the monthly meetup information page
 
         - #### First Time Visitor Goals
@@ -51,7 +51,7 @@ Organisers can post details of the books to be read for the next meetup.  Member
         -   #### Returning Visitor Goals
             As a returning visitor...
             -   I want to be able to easily see details of the previous & next meetup  
-            -   I want to be able to post comments
+            -   I want to be able to post comments about the meetup & books
             -   I want to be able to vote for book of the month
 
 
@@ -84,10 +84,21 @@ Organisers can post details of the books to be read for the next meetup.  Member
 ## - Features -  
 To fulfil the needs of the site's users, the following features were implemented:
 
+- **Simple navigation menu** is always visible at the top of the screen. The current page is indicated by the highlighted menu item.  The Login/Logout item indicates to the visitor if they are currently logged in.
+- **Meetup cards** clearly announce the upcoming and past club events. Clicking anywhere in the card will take the user to the Meetup Details page.
+- **Meetup Details page** displays much more information about the month's book and the organiser's message. 
+- **Option to leave a comment** is available to logged-in members on the Meetup Detail page which allows members to engage in discussions with other club members, discuss the books, etc.  Member's have option to delete their own comments. Note that when users are not logged in the 'Leave a comment' option is replaced with a 'Login to join the discussion' call-to-action.
+- **Cool Feature**  
+- **Cool Feature**  
 - 
 
 ## - Future Features -
--    
+- Allow members to rate books by clicking a visual '5-stars' control
+- Automate closing the vote for next month's book and posting a message to the site
+- Automate generating posting the next month's meetup based on the third Tuesday of each month
+- Allow members to reply in-thread to individual comments to create conversations
+- Allow members to post their own book reviews
+
 <!--  -->
 <!-- End Features -->
 <!--  -->
@@ -133,7 +144,7 @@ All testing and code validation is documented [in this linked TESTING.md documen
 ## Deployment
 
 ### Requirements
-- Python >=3.6, Django 3.2
+- Python >=3.7, Django 3.2
 - The following third party packages were installed using `pip install <package_name>` (listed below in order of installation).  The full list of required dependencies, with version numbers, is in the `requirements.txt` file.  
 ```
 python-dotenv
@@ -179,9 +190,9 @@ Deployment of the site to Heroku was done as follows:
 
 ### Code
 
--   No code was directly copied to this project but numerous resources helped me understand what I needed and how best to code it. These include: [Mozilla MDN Web Docs](https://developer.mozilla.org/en-US/), the official [Python Docs](https://docs.python.org), official [Django Documentation](https://docs.djangoproject.com/en/3.2/), the [Bootstrap](https://developer.mozilla.org/en-US/) docs and code templates
--   The usual suspects: StackOverflow.com, RealPython.com, etc.
-
+- No code was directly copied to this project but numerous resources helped me understand what I needed and how best to code it. These include: [Mozilla MDN Web Docs](https://developer.mozilla.org/en-US/), the official [Python Docs](https://docs.python.org), official [Django Documentation](https://docs.djangoproject.com/en/3.2/), the [Bootstrap](https://developer.mozilla.org/en-US/) docs and code templates
+- The usual suspects: StackOverflow.com, RealPython.com, etc.
+- Book cover images used for testing and demo purposes were either photos of my own books on hand or screen grabs from book sellers' sites. I am not aware of any copyright infringement by doing this.
 
 ### Acknowledgements
 

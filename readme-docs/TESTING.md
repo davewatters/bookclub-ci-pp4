@@ -12,23 +12,43 @@
 
 ### UX Goals, User Stories
 
+- #### As a Site Admin / Club Organiser..
+    - I want to to be able to setup and manage the book list
+        - I tested that I could log into the admin panel and have ability to create, read, update or delete (CRUD) a book.  I tested that I could also do this via the main menu login.
+    - I want to be able to setup and manage the monthly meetup information page
+        - I tested that I could log into the admin panel and have full CRUD ability for a meetup.  I tested that I could also do this via the main menu option.
+
 - #### As a first time user...  
-  -  I want to be able to intuitively navigate the site  
-      - All menu options were tested to ensure that they opened the correct functionality and that all of t returned to the main menu screen.  
-        
+    -  I want to be able to intuitively navigate the site
+        - All menu options were tested to ensure that they opened the correct functionality.  The navigation bar remains at the top of the screen so that the user can easily move between options.
+
+    - I want to easily find information about the book club and its social meetups
+        - I tested that I could click through the meetup information cards on the main screen to reveal full details about the meetup & this month's book.  I tested that the About page displays the club information.
+
     -  I want to be able to Sign Up as a member of the site
-       - I tested that I could create a new registered user from the login screen
+       - I tested that I could create a new registered user from the login screen.
 
-    -  I want the site to be visually clear & appealing  
-       
+- #### As a returning visitor...
+    -   I want to be able to easily see details of the previous & next meetup
+        - I tested that all of the meetups are clearly visible on the main screen and scrolling down reveals older dates. 
 
--   #### As a returning visitor...
-    -   I want to be able to 
-    -   I want to be able to view 
+    -   I want to be able to post comments about the meetup & books
+        - I tested that when I was logged in as a member I had the option to post comments on a meetup page. 
 
--   #### As a frequent user...
-    -   I want to to be able to increase the difficulty level of the game to make play more exciting  
+### Further Testing
 
+- #### As a Site Admin
+    - I want to ensure that site visitors who are unauthenticated cannot access any admin functionality other then viewing site content
+        - I tested that unauthenticated visitors get redirected to the sign in page if attempting to access `/meetups/new`, for example
+    - I want to ensure site visitors can't access member pages or functionality
+        - I tested to options to add/edit/delete etc. were not visible to users when not logged in
+        - I tested that attempting to access `/meetups/new` or `/books/new` redirects to a '403 - Forbidden' error message and allows the user to link back to the main page.
+    - I want to ensure that site members can not delete posts created by other members
+        - I tested that attempting to access (for example) `/comments/8/delete`, which was created by a different user, redirects to a '403 - Forbidden' error message and allows the user to link back to the main page.
+    - I want to ensure that site visitors or members can not delete meetups
+        - I tested that attempting to access (for example) `/meetups/4/delete`, which is only allowed by organisers, redirects to a '403 - Forbidden' error message and allows the user to link back to the main page.
+    - I want the site to be fully responsive on different screen sizes
+        - I tested that content resized properly and that the information was clearly readable and accesible on all screen sizes.
 <hr>
 
 ## Automated Testing
