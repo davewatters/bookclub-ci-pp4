@@ -117,7 +117,7 @@ To fulfil the needs of the site's users, the following features were implemented
 
 ## Testing
 
-All testing and code validation is documented [in this linked TESTING.md document](readme-docs/TESTING.md).
+All testing and code validation is documented [in this linked TESTING.md document](readme-docs/TESTING.md) located in the repo `readme-docs` folder.
 
 ## Bugs  
 
