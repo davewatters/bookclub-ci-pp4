@@ -22,10 +22,9 @@ You can view the live deployed app [HERE.](https://bookclub-blog-ci-pp4.herokuap
 ## - Purpose -
 [This app was created as the fourth Portfolio Project (PP4) for the Code Institute's Full Stack Web Development course. The app is to showcase skills to design a web application using an MVC framework and related contemporary technologies, and as a requirement is deployed to Heroku.]    
 
-An interactive social blog site for a Dubin Bookclub Meetup group.  The club meets once a month in a social setting to discuss the books assigned for reading through popular vote. 
+An interactive social blog site for a Dublin Bookclub Meetup.  The club meets once a month in a social setting to discuss the books assigned for reading through popular vote. 
 
-Organisers can post details of the books to be read for the next meetup.  Members can leave comments on the books or the meeting and suggest new books for the group to read and dsicuss.  Members can also vote for which books will be on next months reading list from the list of suggested books.  Comments are only visibe to authenticated (logged-in) members.
-
+Organisers can post details of the books to be read for the next meetup.  Members can leave comments on the books or the meeting and suggest new books for the group to read and dsicuss.  Members can also vote for which books will be on next month's reading list from the list of suggested books.  
 
 ## - User Experience Design -
 
@@ -50,8 +49,8 @@ Organisers can post details of the books to be read for the next meetup.  Member
 
         -   #### Returning Visitor Goals
             As a returning visitor...
-            -   I want to be able to easily see details of the previous & next meetup  
-            -   I want to be able to post comments about the meetup & books
+            -   I want to be able to easily see details of the previous and next meetup  
+            -   I want to be able to post comments about the meetup and books
             -   I want to be able to vote for book of the month
 
 
@@ -62,7 +61,7 @@ Organisers can post details of the books to be read for the next meetup.  Member
     -   #### Content
        
     -   #### User Input
-        Data is input or updated using Boostrap forms. All user interaction controls are either standard Bootstrap buttons or intuitive Fontawsome icons. 
+        Data is input or updated using Bootstrap forms. All user interaction controls are either standard Bootstrap buttons or intuitive Fontawesome icons. 
 
     -   #### Typography
         The Google font Gill Sans was used for look of the Penguin Classic book covers, so I have chosen Google font Lato as it closely resembles that.
@@ -87,7 +86,7 @@ To fulfil the needs of the site's users, the following features were implemented
 - **Simple navigation menu** is always visible at the top of the screen. The current page is indicated by the highlighted menu item.  The Login/Logout item indicates to the visitor if they are currently logged in.
 - **Meetup cards** clearly announce the upcoming and past club events. Clicking anywhere in the card will take the user to the Meetup Details page.
 - **Meetup Details page** displays much more information about the month's book and the organiser's message. 
-- **Option to leave a comment** is available to logged-in members on the Meetup Detail page which allows members to engage in discussions with other club members, discuss the books, etc.  Member's have option to delete their own comments. Note that when users are not logged in the 'Leave a comment' option is replaced with a 'Login to join the discussion' call-to-action.
+- **Option to leave a comment** is available to logged-in members on the Meetup Detail page which allows members to engage in discussions with other club members, discuss the books, etc.  Members have option to delete their own comments. Note that when users are not logged in the 'Leave a comment' option is replaced with a 'Login to join the discussion' call-to-action.
 - **Cool Feature**  
 - **Cool Feature**  
 - 
@@ -117,7 +116,7 @@ To fulfil the needs of the site's users, the following features were implemented
 1.  [Flake8](https://flake8.pycqa.org/en/latest/) linter extension for VScode 
 1.  [Heroku](https://www.heroku.com) was used to deploy the app
 1.  [LucidChart](https://lucidchart.com) was used to create the logic flowchart
-1.  [Boostrap 4]() front-end CSS toolkit
+1.  [Bootstrap 4]() front-end CSS toolkit
 1.  [Font Awesome 6]() font and icon toolkit
 1.  [pgAdmin]() Postgres database GUI Tool used to generate the ERD 
 
@@ -132,7 +131,7 @@ All testing and code validation is documented [in this linked TESTING.md documen
 
 ## Bugs  
 
-1. Github & LinkedIn fontawsome incons won't correctly apply css class style. https://github.com/twbs/bootstrap/issues/30343.  _reboot.scss:251
+1. Github & LinkedIn Fontawesome incons won't correctly apply css class style. https://github.com/twbs/bootstrap/issues/30343.  _reboot.scss:251
 1. **FIXED** `navbar-toggler` / `navbar-collapse` button stopped working [ `templates/base.html` ]
     - Fix: Was initially using Bootstrap 5 property `data-bs-toggle` & `data-bs-target` but changed to use BS4 (for compatibility with `django-crispy-forms`).  Correct properties for BS4 are `data-toggle` & `data-target`
 1. **FIXED** Bookcover image not being saved to book table for logged-in organiser.  Feature works when logged in as same user via `/admin` app interface.
@@ -160,6 +159,11 @@ django-crispy-forms
 ```
 web: gunicorn bookclub.wsgi:application
 ```
+- Initial deployment on any platform requires the creation of an admin 'superuser' to allow the site owner access to the backend admin control panel. At the Zsh/Bash shell (aka terminal/cli/console/command prompt) run the following command:  
+```
+python3 manage.py createsuperuser
+```
+
 
 ### Heroku  
 The live deployed site can be viewed on Heroku [HERE](https://bookclub-blog-ci-pp4.herokuapp.com)
