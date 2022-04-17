@@ -16,7 +16,7 @@ class Book(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     is_shortlisted = models.BooleanField()
-    
+
     def __str__(self):
         return self.title
 
@@ -25,7 +25,7 @@ class Book(models.Model):
 
     @property
     def long_title(self):
-        return (self.title +' - ' +self.author)
+        return (self.title + ' - ' + self.author)
 
     def get_absolute_url(self):
         return reverse('book-list')
@@ -34,7 +34,7 @@ class Book(models.Model):
 class Votes(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='votes')
     member = models.ForeignKey(User, on_delete=models.CASCADE, related_name='votes')
-    
+
 
 class Meetup(models.Model):
 
@@ -44,7 +44,7 @@ class Meetup(models.Model):
         (2, 'Cancelled')
     )
 
-    title = models.CharField(max_length=40,unique=True)
+    title = models.CharField(max_length=40, unique=True)
     meetup_date = models.DateField(blank=False)
     book1 = models.ForeignKey(Book, on_delete=models.PROTECT, related_name='meetups')
     details = models.TextField(blank=False)
@@ -60,7 +60,7 @@ class Meetup(models.Model):
 
     @property
     def long_title(self):
-         return ('Meetup '+str(self.id) + self.meetup_date.strftime(': %a %-d %B, %Y'))
+        return ('Meetup ' + str(self.id) + self.meetup_date.strftime(': %a %-d %B, %Y'))
 
     @property
     def book1_detail(self):
@@ -81,7 +81,7 @@ class Comments(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ["created_on"] 
+        ordering = ["created_on"]
 
     def __str__(self):
         return f"Comment: {self.body}, by {self.username}"
@@ -91,5 +91,4 @@ class Comments(models.Model):
         return self.user.username
 
     def get_absolute_url(self):
-        return reverse('meetup_detail', kwargs={'pk': self.pk })
-
+        return reverse('meetup_detail', kwargs={'pk': self.pk})

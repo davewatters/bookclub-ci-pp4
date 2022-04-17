@@ -34,15 +34,22 @@
 
 ## Code Validation
 
+The [W3C Markup Validator](https://validator.w3.org/#validate_by_uri), [W3C CSS Jigsaw Validator](https://jigsaw.w3.org/css-validator/#validate_by_uri) and the [JSHint JavaScript Code Quality Tool](https://jshint.com) were used to validate every page of the project for syntax errors. **NOTE: All validation was re-run after fixing any errors shown below to ensure that no further errors or warnings existed.**
+
 ### HTML
 ### CSS
-### JavScript
+### JavaScript
 ### Python PEP8
-The [PEP8 Online](http://pep8online.com) linter was used to ensure the code adhered to the Python Style Guidelines. However, as this is a Django project an exception to PEP8 was made for line lengths greater than 79.  Where lines were up to 88 characters long and no better readability could be achieved by shortening them, they were left as is. Ref: [Django Coding Style](https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/coding-style/#python-style)
+The [PEP8 Online](http://pep8online.com) linter was used to ensure the code adhered to the Python Style Guidelines. However, as this is a Django project an exception to PEP8 was made for line lengths greater than 79.  Where lines were in or around 88 characters long, and no better readability could be achieved by shortening them, they were left as is. See the following doc about coding style: [Django Coding Style](https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/coding-style/#python-style)
 
--   admin.py
+- **`admin.py`**
 <h2 align="center"><img src=admin_py-pep8.png></h2>
--   models.py
+
+- **`forms.py`**
+<h2 align="center"><img src=forms_py-pep8.png></h2>
+
+- **`models.py`** - showing an example of lines which exceed the PEP8 recommended 79. Django Project recommends 88.  
 <h2 align="center"><img src=models_py-pep8.png></h2>
-- views.py
+
+- **`views.py`**
 <h2 align="center"><img src=views_py-pep8.png></h2>
