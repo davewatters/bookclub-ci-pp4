@@ -72,7 +72,7 @@ Organisers can post details of the books to be read for the next meetup.  Member
            
     
     -   #### Wireframes
-        I did not create wireframes with software like Balsamiq, but I have decided to include pictures of my pencil sketches of my layout design process.  These do not necessarily represent the final look of the site pages, but are presented here to show how I went about fleshing out my initial thoughts and ideas about how to structure the site before a line of code was written.
+        I did not create wireframes with software like Balsamiq, but I have decided to include pictures of my pencil sketches of my layout design process.  These do not necessarily represent the final look of the site pages.
         <h2 align="center"><img src="readme-docs/wf-main-mobile.jpg"></h2>
 
     -   #### Database Entity Relationship Diagram

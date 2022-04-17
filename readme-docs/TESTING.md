@@ -61,7 +61,11 @@ Automated testing was not used for this project.
 The [W3C Markup Validator](https://validator.w3.org/#validate_by_uri), [W3C CSS Jigsaw Validator](https://jigsaw.w3.org/css-validator/#validate_by_uri) and the [JSHint JavaScript Code Quality Tool](https://jshint.com) were used to validate every page of the project for syntax errors. **NOTE: All validation was re-run after fixing any errors shown below to ensure that no further errors or warnings existed.**
 
 ### HTML
-<h2 align="center"><img src="w3c-validator-html_base.html.png"></h2>
+- **`Manin home page: meetup_list.html`**
+<h2 align="center"><img src="w3c-validator-html_meetup_list.html.png"></h2>
+
+- **`book_list.html`** - originally reported the following div id duplicate errors. This was fixed by adding {{book.id}} to the div name to ensure that they were unique.
+<h2 align="center"><img src="w3c-validator-html_book_list.html.png"></h2>
 <!-- <h2 align="center"><img src="w3c-validator-html_.png"></h2> -->
 
 ### CSS

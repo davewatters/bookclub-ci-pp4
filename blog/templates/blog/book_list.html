@@ -10,7 +10,7 @@
   <!-- banner-header -->
   <div class="row justify-content-center">
     <div class="card col-md-10 shadow">
-      <div class="card-body" >
+      <div class="card-body">
         <div class="row">
           
           <div class="col-6 card-text"><h4>Our Library</h4></div>
@@ -30,7 +30,7 @@
   <div class="row">
     {% for book in book_list %}
     <div class="container">
-      <div id="accordion">
+      <div id="accordion-{{book.id}}">
         <div class="card">
           <div class="row d-flex align-items-center">
             <div class="card-text col-10 pt-1" id="booktitle-{{book.id}}">
@@ -50,7 +50,7 @@
               </div>
             </div>
             
-            <div id="book-{{book.id}}" class="collapse" aria-labelledby="booktitle-{{book.id}}" data-parent="#accordion">
+            <div id="book-{{book.id}}" class="collapse" aria-labelledby="booktitle-{{book.id}}" data-parent="#accordion-{{book.id}}">
               <div class="card-body">
               <p>{{ book.synopsis }}</p>
             </div>
