@@ -1,13 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Delete Book</h1>
-<hr>
-<p>{{ book.long_title }}</p>
-<p>Are you sure you want to delete?</p>
-<hr>
-<form method="post" action="{% url 'book-delete' book.id %}">
-  {% csrf_token %}
-  <button class="btn btn-outline-danger" type="submit">Confirm</button>
-  <a class="btn btn-outline-secondary" href="{% url 'book-list' %}">Cancel</a>
-</form>
+
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="card shadow">
+      <div class="card-body">
+
+        <h1>Delete Book</h1>
+        <hr>
+        <p>{{ book.long_title }}</p>
+        <p>Are you sure you want to delete?</p>
+        <hr>
+        <form method="post" action="{% url 'book-delete' book.id %}">
+          {% csrf_token %}
+          <button class="btn btn-danger" type="submit">Confirm</button>
+          <a class="btn btn-secondary" href="{% url 'book-list' %}">Cancel</a>
+        </form>
+                
+      </div>
+    </card>
+  </div>
+</div>
+
 {% endblock %}
