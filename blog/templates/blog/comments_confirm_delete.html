@@ -1,14 +1,26 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Delete Comment</h1>
-<hr>
-<p>Comment created on: {{ comments.created_on }}</p>
-<p>{{ comments }}</p>
-<p>Are you sure you want to delete?</p>
-<hr>
-<form method="post" action="{% url 'comment-delete' comments.id %}">
-  {% csrf_token %}
-  <button class="btn btn-outline-danger" type="submit">Delete</button>
-  <a class="btn btn-outline-secondary" href="{% url 'meetup_detail' comments.meetup.pk %}">Cancel</a>
-</form>
+
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="card shadow">
+      <div class="card-body">
+
+        <h1>Delete Comment</h1>
+        <hr>
+        <p>Comment created on: {{ comments.created_on }}</p>
+        <p>{{ comments }}</p>
+        <p>Are you sure you want to delete?</p>
+        <hr>
+        <form method="post" action="{% url 'comment-delete' comments.id %}">
+          {% csrf_token %}
+          <button class="btn btn-danger" type="submit">Delete</button>
+          <a class="btn btn-secondary" href="{% url 'meetup_detail' comments.meetup.pk %}">Cancel</a>
+        </form>
+                
+      </div>
+    </card>
+  </div>
+</div>
+
 {% endblock %}
