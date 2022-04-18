@@ -12,7 +12,7 @@
   <!-- Meetup details in a central card -->
   <div class="row">
     <div class="col-sm py-2">
-      <div class="card">
+      <div class="card shadow">
         <div class="card-header d-flex">
           <div class="col-6" >{{ meetup.long_title }}</div>
           <div class="col-6 card-text text-right">
@@ -54,7 +54,7 @@
             </div> 
         </div> <!-- /book detail outer card-body -->
 
-        <div class="card-footer">
+        <div class="card-footer meetup-note">
           <div class="px-2">
             <p>Organiser's Note:</p>
             <p>{{ meetup.details |linebreaks }}</p></div>
@@ -67,7 +67,7 @@
   <!-- Meetup comments in a central card -->
   <div class="row">
     <div class="col-sm py-2">
-      <div class="card">
+      <div class="card shadow">
         <div class="card-header">
           <div class="row justify-content-between align-items-center">
             <div class="ml-4">
@@ -117,15 +117,15 @@
   <div class="row">
     <div class="col-sm py-2">
       <div id="meetup-comment-div" class="collapse">
-        <div class="card">
+        <div class="card shadow">
           <div class="card-header">
-            Posting as: {{ user.username }}
+            <strong>Posting as: {{ user.username }}</strong>
           </div>
           <div class="card-body">
             <form id="meetup-comment-form" method="POST">
               {{ comment_form | crispy }}
               {% csrf_token %}
-              <button type="submit" class="btn btn-success btn-lg">Submit</button>
+              <button type="submit" class="btn btn-primary btn-lg">Submit</button>
             </form>
           </div>
         </div>

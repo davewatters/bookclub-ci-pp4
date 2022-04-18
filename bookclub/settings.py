@@ -17,14 +17,15 @@ from django.contrib.messages import constants as messages
 import dj_database_url
 from dotenv import load_dotenv
 
-# Create a .env file in same dir as this settings.py file
+# To use dotenv, ensure .env file is in same dir as this settings.py file
+# See .env_template file for example vars & structure
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = BASE_DIR.joinpath('templates')
 
-
+# DEBUG will always eval to False unless DEVELOPMENT var exists in .env
 DEVELOPMENT = os.environ.get('DEVELOPMENT', False)
 DEBUG = DEVELOPMENT
 
@@ -150,15 +151,12 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [ BASE_DIR.joinpath('static'), ]
 STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 STATIC_ROOT = BASE_DIR.joinpath('staticfiles')
-# STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static') ]
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Added these with the Allauth package

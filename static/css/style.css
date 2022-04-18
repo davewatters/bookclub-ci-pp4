@@ -84,7 +84,12 @@ footer {
 }
 
 
-/*** Book List/Library **************************************/
+/*** Meetup Details **************************************/
+.meetup-note {
+  background-color: rgb(253, 253, 228) !important;
+}
+
+/*** Book List/Library ************************************/
 .book-title {
   color: var(--text-colour);
   text-decoration: none !important;
