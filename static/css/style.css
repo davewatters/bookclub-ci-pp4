@@ -2,21 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Trocchi&display=swap');
 
-
-/* just for testing */
-.row-1{
-  background-color: paleturquoise;
-}
-
-.row-2{
-  background-color: palegreen;
-}
-
-.row-3{
-  background-color: palegoldenrod;
-}
-
-
 /* 
   Global styling
 */
@@ -66,16 +51,11 @@ footer {
 }
 
 
-/* 
-  Footer
-*/
-.social-link {
-  color: black;
+/*** Main home screen **********************************/
+.bookcover-img {
+  height: 12rem;
 }
 
-/* 
-  Main home screen
-*/
 .card-max-h {
   height: 30rem;
 }
@@ -85,37 +65,36 @@ footer {
   text-overflow: ellipsis !important;
 }
 
-.image-container {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    padding: 1rem;
-}
-
-.bookcover-img {
-  height: 12rem;
-}
-
 .header-banner {
   background-color: antiquewhite;
   display: flex;
   align-items: center;
 }
 
-/*** Meetup Details **************************************/
-/* 
-*/
+.image-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* Footer */
+.social-link {
+  color: black;
+}
 
 
 /*** Book List/Library **************************************/
-/* 
-  Booklist booktitle: rotate arrow to show expanded state
-*/
+.book-title {
+  color: var(--text-colour);
+  text-decoration: none !important;
+}
+
+/* Booklist booktitle: rotate arrow to show expanded state */
 h5 > a[aria-expanded="true"] .fa-circle-down {
   transform: rotate(180deg);
   transition: transform .5s;
 }
-
 
 /*
 * Star rating for books
@@ -129,41 +108,13 @@ h5 > a[aria-expanded="true"] .fa-circle-down {
 }
 
 
- /*
+/*** Overrides for Bootstrap classes ********************
+ * 
  * Bootstrap v4.6.1 (https://getbootstrap.com/)
  */
 
 .card {
-  position: relative;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  min-width: 0;
-  word-wrap: break-word;
-  background-color: #fff;
-  background-clip: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0rem;
-}
-
-.card-body {
-  -ms-flex: 1 1 auto;
-  flex: 1 1 auto;
-  min-height: 1px;
-  padding: 1.25rem;
-}
-
-.card-title {
-  margin-bottom: 0.75rem;
-}
-
-.card-header {
-  /* padding: 0.75rem 1.25rem; */
-  padding: 0.25rem;
-  margin-bottom: 0;
-  background-color: rgba(0, 0, 0, 0.03);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0rem !important;
 }
 
 .card-footer {
@@ -171,6 +122,3 @@ h5 > a[aria-expanded="true"] .fa-circle-down {
   background-color: rgba(0, 0, 0, 0.03);
   border-top: 1px solid rgba(0, 0, 0, 0.125);
 }
-/*
- * END END END Bootstrap v4.6.1 
- */

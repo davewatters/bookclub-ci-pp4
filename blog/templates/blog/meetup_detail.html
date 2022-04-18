@@ -18,14 +18,13 @@
           <div class="col-6 card-text text-right">
             <!-- If user is organiser show additional options-->
             {% if request.user.is_staff  %}
-            <a href="{% url 'meetup-delete' meetup.pk %}" class="btn btn-outline-danger me-4" ><i class="fa-regular fa-trash-can"></i></a>
-            <a href="{% url 'meetup-update' meetup.pk %}" class="btn btn-outline-info" ><i class="fa-regular fa-edit"></i></a>
+            <a href="{% url 'meetup-delete' meetup.pk %}" class="btn btn-outline-danger me-4" aria-label="Delete button"><i class="fa-regular fa-trash-can"></i></a>
+            <a href="{% url 'meetup-update' meetup.pk %}" class="btn btn-outline-info" aria-label="Edit button"><i class="fa-regular fa-edit"></i></a>
             {% endif %}
+          </div>
         </div>
-
-        </div>
-        <div>
-          <div class="row card-body">
+        <!-- book detail -->
+        <div class="row card-body">
 
             <!-- image container -->
             <div class="col-sm-4 image-container">
@@ -38,7 +37,6 @@
             </div>
             <!-- end image-container -->
             
-            <!-- book details -->
             <div class="col-sm-8">
               <p class="card-text"><h3>{{ meetup.book1_detail.title }}</h3></p>
               <p class="card-text"><h4>{{ meetup.book1_detail.author }}</h4></p>
@@ -52,36 +50,10 @@
                 <span class="fa-star {% if meetup.book1.members_rating > 2 %}fa-solid star-on{% else %}fa-regular star-off{% endif %}"></span>
                 <span class="fa-star {% if meetup.book1.members_rating > 3 %}fa-solid star-on{% else %}fa-regular star-off{% endif %}"></span>
                 <span class="fa-star {% if meetup.book1.members_rating > 4 %}fa-solid star-on{% else %}fa-regular star-off{% endif %}"></span>
-                <span class="fa-star {% if meetup.book1.members_rating > 5 %}fa-solid star-on{% else %}fa-regular star-off{% endif %}"></span>
-                <span class="fa-star {% if meetup.book1.members_rating > 6 %}fa-solid star-on{% else %}fa-regular star-off{% endif %}"></span>
-                <span class="fa-star {% if meetup.book1.members_rating > 7 %}fa-solid star-on{% else %}fa-regular star-off{% endif %}"></span>
-                <span class="fa-star {% if meetup.book1.members_rating > 8 %}fa-solid star-on{% else %}fa-regular star-off{% endif %}"></span>
-                <span class="fa-star {% if meetup.book1.members_rating > 9 %}fa-solid star-on{% else %}fa-regular star-off{% endif %}"></span>
               </p>
-              <!-- Logged-in members can rate this book -->
-              <!-- 
-              {% if user.is_authenticated %}
-              <a href="#book-rating-div" id="btn-rate-book" data-toggle="collapse" class="btn-sm btn-primary"
-                  aria-expanded="false" aria-controls="book-rating-div">Rate this book</a>
+            </div> 
+        </div> <!-- /book detail outer card-body -->
 
-              <div id="book-rating-div" class="collapse">
-                <form id="book-rating-form" method="POST">
-                  {{ book_rating_form | crispy }}
-                  {% csrf_token %}
-                  <button type="submit" class="btn btn-success btn-sm">Submit</button>
-                </form>
-              </div>
-
-              {% endif %} 
-              -->
-            </div>
-            
-          </div>
-        </div>
-        
-        <div class="row ml-4 justify-content-center">
-        </div>
-        
         <div class="card-footer">
           <div class="px-2">
             <p>Organiser's Note:</p>
@@ -90,8 +62,7 @@
         </div>
       </div>
     </div>
-  </div>
-  <!-- end details container card -->
+  </div> <!-- end meetup details container card -->
 
   <!-- Meetup comments in a central card -->
   <div class="row">

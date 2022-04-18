@@ -27,40 +27,68 @@
   </div>
   
   <!-- List books in collapsible accordion style -->
-  <div class="row">
-    {% for book in book_list %}
-    <div class="container">
-      <div id="accordion-{{book.id}}">
-        <div class="card">
+  <div class="row mt-3">
+    <div class="accordion col" id="accordionDiv">
+      {% for book in book_list %}
+      <div class="card shadow">
+        <!-- <div class="accordion-item"> -->
+
+        <div class="accordion-header" id="booktitle-{{book.id}}">
           <div class="row d-flex align-items-center">
-            <div class="card-text col-10 pt-1" id="booktitle-{{book.id}}">
-              <h5><a role="button" class="booktitle btn btn-block text-left collapsed" data-toggle="collapse"
-                            data-target="#book-{{book.id}}" aria-expanded="false"
-                            aria-controls="book-{{book.id}}">
-                            <i class="fa-regular fa-circle-down mr-1 text-muted"></i>
-                  {{ book.long_title}}
-                </a></h5>
-              </div>
-              <div class="col-2">
-                <!-- If user is organiser show additional options-->
-                {% if request.user.is_staff  %}
-                <a href="{% url 'book-delete' book.pk %}" class="btn-sm btn-outline-danger me-4" ><i class="fa-regular fa-trash-can"></i></a>
-                <a href="{% url 'book-update' book.pk %}" class="btn-sm btn-outline-info" ><i class="fa-regular fa-edit"></i></a>
-                {% endif %}
-              </div>
+            <div  class="col-10 pt-1">
+              <h5><a class="book-title btn-block col" role="button"
+                          data-toggle="collapse"
+                          data-target="#book-{{book.id}}" aria-expanded="true"
+                          aria-controls="book-{{book.id}}">
+                          <i class="fa-regular fa-circle-down mr-1 text-muted">  </i>
+                  {{book.long_title}}</a>
+              </h5>
             </div>
-            
-            <div id="book-{{book.id}}" class="collapse" aria-labelledby="booktitle-{{book.id}}" data-parent="#accordion-{{book.id}}">
-              <div class="card-body">
-              <p>{{ book.synopsis }}</p>
+            <div class="col-2">
+              <!-- If user is organiser show additional options-->
+              {% if request.user.is_staff  %}
+              <a href="{% url 'book-delete' book.pk %}" class="btn-sm btn-outline-danger me-4" ><i class="fa-regular fa-trash-can"></i></a>
+              <a href="{% url 'book-update' book.pk %}" class="btn-sm btn-outline-info pl-" ><i class="fa-regular fa-edit"></i></a>
+              {% endif %}
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-    <!-- /booklist -->
-
-  </div>
+        </div> <!-- /accordion header-->
+        
+        <!-- collapsible -->
+        <div id="book-{{book.id}}" class="accordion-collapse collapse" aria-labelledby="booktitle-{{book.id}}" data-parent="#accordionDiv">
+          <!-- Book detail -->
+          <div class="row card-body">
+            
+            <div class="image-container">
+              {% if "placeholder" in book.cover_image.url %}
+              <img class="bookcover-img"
+              src="{% static 'media/penguin-book-cover.png' %}" alt="bookcover image placeholder">
+              {% else %}
+              <img class="bookcover-img" src=" {{ book.cover_image.url }}" alt="bookcover image">
+              {% endif %}
+            </div>
+            
+            <div class="col-sm-8">
+              <p class="card-text"><h3>{{ book_detail.title }}</h3></p>
+              <p class="card-text"><h4>{{ book_detail.author }}</h4></p>
+              <p class="card-text">First Published: {{ book.year_published }}</p>
+              <hr>
+              <p class="card-text">{{ book.synopsis |linebreaks }}</p>
+              <hr>
+              <p class="card-text">Members' Rating:
+                <span class="fa-star {% if book.members_rating > 0 %}fa-solid star-on{% else %}fa-regular star-off{% endif %}"></span>
+                <span class="fa-star {% if book.members_rating > 1 %}fa-solid star-on{% else %}fa-regular star-off{% endif %}"></span>
+                <span class="fa-star {% if book.members_rating > 2 %}fa-solid star-on{% else %}fa-regular star-off{% endif %}"></span>
+                <span class="fa-star {% if book.members_rating > 3 %}fa-solid star-on{% else %}fa-regular star-off{% endif %}"></span>
+                <span class="fa-star {% if book.members_rating > 4 %}fa-solid star-on{% else %}fa-regular star-off{% endif %}"></span>
+              </p>
+            </div>
+          </div>
+        </div> <!-- /collapsible-->
+          
+      </div> <!-- /accordion item-->
+      {% endfor %} <!-- /booklist -->
+    </div> <!-- /accordionDiv -->
+  </div> <!-- /book row contianer -->
 </div>
 {% endblock content %}
