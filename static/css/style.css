@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Trocchi&display=swap');
 
 /* 
@@ -13,9 +12,8 @@
 
   --bg-colour: #eef4f4; /* sitewide background colour */
   --text-colour: #000; /* sitewide text colour */
-  --logo-colour: brown;
-  /* --header-font-family: "Lora", serif; */
-  --text-font-family: Arial, Helvetica, sans-serif;
+  --logo-colour: #cc5500;
+  --text-font-family: 'Lato', Arial, Helvetica, sans-serif;
   --logo-font-family: "Trocchi", serif;
   --text-font-size: 1rem;
 }
