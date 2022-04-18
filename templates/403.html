@@ -4,12 +4,21 @@
 {% block title %}{% translate '403 Forbidden' %}{% endblock title%}
 
 {% block content %}
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="card shadow">
+      <div class="card-body">
 
-<h1>403 Forbidden</h1>
-<h2>Server Error</h2>
-<hr>
-<p>We’re sorry, but you are not authorised to access the requested content.</p>
-<hr>
-<p><a class="" href="{% url 'blog-home' %}">Click Here to go back to the Home Page</a></p>
+        <h1>403 Forbidden</h1>
+        <h2>Server Error</h2>
+        <hr>
+        <p>We’re sorry, but you are not authorised to access the requested content.</p>
+        <hr>
+        <p><a class="" href="{% url 'blog-home' %}">Click Here to go back to the Home Page</a></p>
+        
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock content %}

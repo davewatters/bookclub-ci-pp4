@@ -4,12 +4,20 @@
 {% block title %}{% translate 'Page not found' %}{% endblock title %}
 
 {% block content %}
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="card shadow">
+      <div class="card-body">
 
-<h1>404 Error</h1>
-<h2>Page not found</h2>
-<hr>
-<p>We’re sorry, but the requested page could not be found.</p>
-<hr>
-<p><a class="" href="{% url 'blog-home' %}">Click Here to go back to the Home Page</a></p>
+        <h1>404 Error</h1>
+        <h2>Page not found</h2>
+        <hr>
+        <p>We’re sorry, but the requested page could not be found.</p>
+        <hr>
+        <p><a class="" href="{% url 'blog-home' %}">Click Here to go back to the Home Page</a></p>
 
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock content %}
