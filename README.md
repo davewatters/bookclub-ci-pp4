@@ -4,7 +4,7 @@
 
 <br />
 
-You can view the live deployed app [HERE.](https://bookclub-blog-ci-pp4.herokuapp.com/)
+You can view the live deployed app [HERE.](https://bookclub-ci-pp4.onrender.com/)
 <br />
 
 <!-- Responsive desgin sample image from http://ami.responsivedesign.is/ -->
@@ -20,7 +20,7 @@ You can view the live deployed app [HERE.](https://bookclub-blog-ci-pp4.herokuap
 * [Credits](#credits)
 
 ## - Purpose -
-[This app was created as the fourth Portfolio Project (PP4) for the Code Institute's Full Stack Web Development course. The app is to showcase skills to design a web application using an MVC framework and related contemporary technologies, and as a requirement is deployed to Heroku.]    
+[This app was created as the fourth Portfolio Project (PP4) for the Code Institute's Full Stack Web Development course. The app is to showcase skills to design a web application using an MVC framework and related contemporary technologies, and as a requirement is deployed to Heroku. The site was later migrated to Render.com & ElephantSQL.com for free hosting.]    
 
 An interactive social blog site for a Dublin Bookclub Meetup.  The club meets once a month in a social setting to discuss the books assigned for reading through popular vote. 
 
@@ -115,11 +115,13 @@ To fulfil the needs of the site's users, the following features were implemented
 1.  [Git](https://git-scm.com/) was used for version control and managed via the VSCode terminal to commit to Git and push to GitHub.
 1.  [GitHub](https://github.com/) was used to store the project's code after being pushed from Git
 1.  [Flake8](https://flake8.pycqa.org/en/latest/) linter extension for VScode 
-1.  [Heroku](https://www.heroku.com) was used to deploy the app
 1.  [LucidChart](https://lucidchart.com) was used to create the logic flowchart
 1.  [Bootstrap 4]() front-end CSS toolkit
 1.  [Font Awesome 6]() font and icon toolkit
 1.  [pgAdmin]() Postgres database GUI Tool used to generate the ERD 
+1.  [Heroku](https://www.heroku.com) was used to deploy the app
+1.  [Render](https://render.com) was later used to host the app
+1.  [ElephantSQL](https://elephantsql.com) was later used to host the PostgresSQL database
 
 
 <!---  --->
@@ -167,7 +169,9 @@ python3 manage.py createsuperuser
 
 
 ### Heroku  
-The live deployed site can be viewed on Heroku [HERE](https://bookclub-blog-ci-pp4.herokuapp.com)
+~~The live deployed site can be viewed on Heroku [HERE](https://bookclub-blog-ci-pp4.herokuapp.com)~~
+
+Note: The live deployed site was later migrated to Render and can be viewed [HERE](https://bookclub-ci-pp4.onrender.com).  Just note that the following instructions are being left in this readme for now, but are specific to the methods used for the then Heroku deployment.
 
 The Project repository (repo) is at [https://github.com/davewatters/](https://github.com/davewatters/bookclub-ci-pp4)
 
